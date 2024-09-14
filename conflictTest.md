@@ -1,2 +1,3 @@
-This is a test file to practice resolving conflicts.
+This is a test file to practice resolving conflicts for ME.
+
 
