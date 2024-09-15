@@ -26,34 +26,30 @@ Here are some initial sketches for the **DM Training Grounds** interface:
 ![Dropdown](./ReadMeImages/Dropdown.png)
 *Dropdown feature for selecting scenarios or player configurations.*
 
-### Chatbot Interaction Flow
+## Chatbot Interaction Flow
 
 ```mermaid
 sequenceDiagram
     participant DM
-    participant Player1
-    participant Player2
-    participant Server
+    participant AI_Chatbot as AI Chatbot (Simulating Players)
     
-    DM->>Server: Start Session
-    Server-->>DM: Confirm Session Start
+    DM->>AI_Chatbot: Start Session
+    AI_Chatbot-->>DM: Confirm Session Start
     
-    DM->>Player1: Describe Scene
-    Player1->>DM: Player 1 Action
-    DM->>Server: Process Player 1 Action
-    Server-->>Player1: Respond with Feedback
-    Server-->>DM: Provide Real-time Feedback
+    DM->>AI_Chatbot: Describe Scene
+    AI_Chatbot->>DM: Simulated Player Action 1
+    DM->>AI_Chatbot: Process Action
+    AI_Chatbot-->>DM: Provide Feedback
     
-    DM->>Player2: Describe Scene
-    Player2->>DM: Player 2 Action
-    DM->>Server: Process Player 2 Action
-    Server-->>Player2: Respond with Feedback
-    Server-->>DM: Provide Real-time Feedback
+    DM->>AI_Chatbot: Describe Next Scene
+    AI_Chatbot->>DM: Simulated Player Action 2
+    DM->>AI_Chatbot: Process Action
+    AI_Chatbot-->>DM: Provide Feedback
 
-    DM->>Server: End Session
-    Server-->>DM: Session End Confirmation
+    DM->>AI_Chatbot: End Session
+    AI_Chatbot-->>DM: Session End Confirmation
 ```
-*Mermaid diagram illustrating the flow of interaction between the Dungeon Master, players, and the server during a training session.*
+*Mermaid diagram illustrating the flow of interaction between the Dungeon Master (DM) and the AI-powered chatbot, which simulates the actions of multiple players during a training session.*
 
 ## Key Features
 - **Learning Modules**: Structured lessons covering key D&D mechanics. Each module is interactive, guiding new DMs through different topics and challenges they may encounter in real sessions.
