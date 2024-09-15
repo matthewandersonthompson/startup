@@ -43,6 +43,7 @@ sequenceDiagram
     DM->>Server: Player 2 Action
     Server -->>Player2: Respond with Feedback
     Server -->>DM: Provide Real-time Feedback
+```
 
 
 ## Key Features
