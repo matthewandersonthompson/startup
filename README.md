@@ -26,16 +26,34 @@ Here are some initial sketches for the **DM Training Grounds** interface:
 ![Dropdown](./ReadMeImages/Dropdown.png)
 *Dropdown feature for selecting scenarios or player configurations.*
 
+### Chatbot Interaction Flow
+
 ```mermaid
 sequenceDiagram
-    actor DM
-    DM->>Server: Player 1 Action
-    Server -->>Player1: Respond with Feedback
-    DM->>Server: Player 2 Action
-    Server -->>Player2: Respond with Feedback
-    Server -->>DM: Provide Real-time Feedback
-```
+    participant DM
+    participant Player1
+    participant Player2
+    participant Server
+    
+    DM->>Server: Start Session
+    Server-->>DM: Confirm Session Start
+    
+    DM->>Player1: Describe Scene
+    Player1->>DM: Player 1 Action
+    DM->>Server: Process Player 1 Action
+    Server-->>Player1: Respond with Feedback
+    Server-->>DM: Provide Real-time Feedback
+    
+    DM->>Player2: Describe Scene
+    Player2->>DM: Player 2 Action
+    DM->>Server: Process Player 2 Action
+    Server-->>Player2: Respond with Feedback
+    Server-->>DM: Provide Real-time Feedback
 
+    DM->>Server: End Session
+    Server-->>DM: Session End Confirmation
+```
+*Mermaid diagram illustrating the flow of interaction between the Dungeon Master, players, and the server during a training session.*
 
 ## Key Features
 - **Learning Modules**: Structured lessons covering key D&D mechanics. Each module is interactive, guiding new DMs through different topics and challenges they may encounter in real sessions.
