@@ -4,34 +4,25 @@
 Soon welcoming the newest WorldSmith.io feature: The Dungeon Master Training Grounds! Already, we use AI to help DMs prepare their campaigns and sessions. However, what if you are a new DM? What if you want to learn how to run your own sessions with ease and wow your players? The WorldSmith Training Grounds is the perfect tool to help you get started and prepare for your first session. It features an AI-powered chatbot that simulates real player interactions, allowing you to practice handling different player dynamics in a controlled environment. Additionally, the learning module includes interactive lessons and quizzes on core game mechanics, helping new DMs build confidence, track their progress, and improve their skills before stepping into live gameplay.
 
 ## Design
-*Include your design sketches here, with a brief explanation of each.*
-
-- **DM Training Hub**: Main dashboard for users to access learning modules, quizzes, and the chatbot.
-- **Learning Module Interface**: Interactive lessons and quizzes on core D&D mechanics, designed like Duolingo.
-- **Chatbot Interface**: Real-time interaction with simulated players using AI to help DMs practice managing sessions.
-- **User Profile Page**: Displays user progress, scores, and completed modules.
-
-### Design
-
 Here are some initial sketches for the **DM Training Grounds** interface:
 
-#### DM Training Hub
+### DM Training Hub
 ![DM Training Hub](./ReadMeImages/DM_Training_Grounds_Homepage.png)
 *Main dashboard for users to access learning modules, quizzes, and the chatbot.*
 
-#### ChatBot Interface
+### ChatBot Interface
 ![ChatBot Interface](./ReadMeImages/ChatBot.png)
 *Interface where DMs interact with AI-powered players.*
 
-#### Quiz/Learning Module
+### Quiz/Learning Module
 ![Quiz and Learning Module](./ReadMeImages/Quiz:Learning.png)
 *Interactive lessons and quizzes for new Dungeon Masters.*
 
-#### Login Page
+### Login Page
 ![Login Page](./ReadMeImages/Login.png)
 *Simple login page where DMs create an account or log in.*
 
-#### Dropdown
+### Dropdown
 ![Dropdown](./ReadMeImages/Dropdown.png)
 *Dropdown feature for selecting scenarios or player configurations.*
 
