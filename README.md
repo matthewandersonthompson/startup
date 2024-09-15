@@ -24,7 +24,7 @@ Here are some initial sketches for the **DM Training Grounds** interface:
 *Interface where DMs interact with AI-powered players.*
 
 #### Quiz/Learning Module
-![Quiz and Learning Module](./ReadMeImages/Quiz_Learning.png)
+![Quiz and Learning Module](./ReadMeImages/Quiz:Learning.png)
 *Interactive lessons and quizzes for new Dungeon Masters.*
 
 #### Login Page
