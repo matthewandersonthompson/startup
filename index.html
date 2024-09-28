@@ -2,52 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon HTML</title>
-    <link rel="icon" href="favicon.ico" />
+    <title>DM Training Grounds</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>Simon Clement<sup>&reg;</sup></h1>
-
-      <!-- Navigation elements -->
+      <h1>DM Training Grounds</h1>
       <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="play.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
-        </menu>
+        <ul>
+          <li><a href="auth.html">Login</a></li>
+          <li><a href="app-data.html">Dashboard</a></li>
+          <li><a href="database.html">Quizzes</a></li>
+          <li><a href="realtime.html">Chatbot</a></li>
+        </ul>
       </nav>
-
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-      <hr />
     </header>
 
     <main>
-      <h1>Welcome to Simon</h1>
-      <form method="get" action="play.html">
-        <div>
-          <span>@</span>
-          <input type="text" placeholder="your@email.com" />
-        </div>
-        <div>
-          <span>🔒</span>
-          <input type="password" placeholder="password" />
-        </div>
-        <button type="submit">Login</button>
-        <button type="submit">Create</button>
-      </form>
+      <section>
+        <h2>Welcome to DM Training Grounds</h2>
+        <p>
+          DM Training Grounds helps you practice and improve your Dungeon Master
+          skills. Explore learning modules, take quizzes, and interact with our
+          AI-powered chatbot to simulate real player interactions.
+        </p>
+        <a href="auth.html">Get Started</a>
+      </section>
+
+      <section>
+        <h3>Key Features</h3>
+        <ul>
+          <li>Interactive learning modules</li>
+          <li>AI-powered chatbot to simulate players</li>
+          <li>Real-time feedback and progress tracking</li>
+        </ul>
+      </section>
     </main>
 
     <footer>
       <hr />
-      <span class="text-reset">Author Name(s)</span>
-      <br />
-      <a href="https://github.com/webprogramming260/simon-html">GitHub</a>
+      <p>&copy; 2024 WorldSmith LLC</p>
+      <a href="https://github.com/matthewandersonthompson/startup">GitHub Repository</a>
     </footer>
   </body>
 </html>
