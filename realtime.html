@@ -20,18 +20,49 @@
 
     <main>
       <section>
-        <h2>AI Chatbot</h2>
-        <div id="chatbox">
-          <p>Simulating real-time player interactions...</p>
-          <!-- Placeholder for chatbot interaction -->
-        </div>
+        <h2>AI Chatbot - Dungeon Master Training</h2>
+        
+        <!-- ChatGPT Screenshot -->
+        <img src="chatgpt_screenshot.png" alt="ChatGPT Example" width="500" />
+        
+        <p>Select the type of scene you'd like to practice DMing:</p>
+        
+        <!-- Dropdown for scene selection -->
+        <form action="#">
+          <label for="scene">Choose a scene:</label>
+          <select id="scene" name="scene" required>
+            <option value="" disabled selected>Select a scene</option>
+            <option value="tavern">Tavern Encounter</option>
+            <option value="dungeon">Dungeon Exploration</option>
+            <option value="combat">Combat Scenario</option>
+            <option value="puzzle">Puzzle Challenge</option>
+            <option value="wilderness">Wilderness Survival</option>
+            <option value="roleplay">Roleplaying Conversation</option>
+          </select>
+
+          <h3>Are you ready to start DMing?</h3>
+          <p>Enter your DM prompts below to begin:</p>
+
+          <!-- DM prompt input -->
+          <label for="dmPrompt">DM Prompt:</label><br />
+          <textarea id="dmPrompt" name="dmPrompt" rows="4" cols="50" placeholder="Describe your scene or interact with the players..."></textarea><br />
+
+          <button type="submit">Start Session</button>
+        </form>
+      </section>
+
+      <section>
+        <h3>How It Works</h3>
+        <p>
+          Once you submit your prompt, the AI-powered chatbot will simulate player interactions based on your selected scene.
+          You can continue to prompt the AI with new actions, describe different scenarios, and practice being a Dungeon Master in a safe environment.
+        </p>
       </section>
     </main>
 
     <footer>
       <hr />
       <p>&copy; 2024 DM Training Grounds</p>
-      <a href="https://github.com/matthewandersonthompson/startup">GitHub Repository</a>
     </footer>
   </body>
 </html>

@@ -20,19 +20,72 @@
 
     <main>
       <section>
-        <h2>Available Quizzes</h2>
-        <ul>
-          <li>Quiz 1: Basic D&D Mechanics</li>
-          <li>Quiz 2: Combat Scenarios</li>
-          <li>Quiz 3: Spellcasting and Magic</li>
-        </ul>
+        <h2>Quiz: Check or Saving Throw?</h2>
+        
+        <!-- Duolingo Style Quiz Screenshot -->
+        <img src="duolingo_quiz_screenshot.png" alt="Quiz Example" width="500" />
+        
+        <p>Answer the following questions by selecting the appropriate type of roll for each scenario.</p>
+        
+        <form action="quiz-results.html" method="POST">
+          <div>
+            <h3>1. The rogue is trying to sneak past a group of guards. What kind of roll should they make?</h3>
+            <label>
+              <input type="radio" name="question1" value="check" required /> Skill Check (Stealth)
+            </label><br />
+            <label>
+              <input type="radio" name="question1" value="saving_throw" required /> Saving Throw (Dexterity)
+            </label>
+          </div>
+
+          <div>
+            <h3>2. A fireball spell explodes near the party. What kind of roll should they make?</h3>
+            <label>
+              <input type="radio" name="question2" value="check" required /> Skill Check (Dexterity)
+            </label><br />
+            <label>
+              <input type="radio" name="question2" value="saving_throw" required /> Saving Throw (Dexterity)
+            </label>
+          </div>
+
+          <div>
+            <h3>3. The bard tries to convince a merchant to lower their prices. What kind of roll should they make?</h3>
+            <label>
+              <input type="radio" name="question3" value="check" required /> Skill Check (Persuasion)
+            </label><br />
+            <label>
+              <input type="radio" name="question3" value="saving_throw" required /> Saving Throw (Charisma)
+            </label>
+          </div>
+
+          <div>
+            <h3>4. The party encounters a trap that releases poisonous gas. What kind of roll should they make?</h3>
+            <label>
+              <input type="radio" name="question4" value="check" required /> Skill Check (Investigation)
+            </label><br />
+            <label>
+              <input type="radio" name="question4" value="saving_throw" required /> Saving Throw (Constitution)
+            </label>
+          </div>
+
+          <div>
+            <h3>5. The wizard is attempting to identify a magical artifact. What kind of roll should they make?</h3>
+            <label>
+              <input type="radio" name="question5" value="check" required /> Skill Check (Arcana)
+            </label><br />
+            <label>
+              <input type="radio" name="question5" value="saving_throw" required /> Saving Throw (Wisdom)
+            </label>
+          </div>
+
+          <button type="submit">Submit Quiz</button>
+        </form>
       </section>
     </main>
 
     <footer>
       <hr />
       <p>&copy; 2024 DM Training Grounds</p>
-      <a href="https://github.com/matthewandersonthompson/startup">GitHub Repository</a>
     </footer>
   </body>
 </html>
