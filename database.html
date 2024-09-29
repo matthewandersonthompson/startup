@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quizzes - DM Training Grounds</title>
+    <title>Database - DM Training Grounds</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -11,75 +11,66 @@
       <h1>DM Training Grounds</h1>
       <nav>
         <ul>
-          <li><a href="auth.html">Logout</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="auth.html">Login</a></li>
           <li><a href="app-data.html">Dashboard</a></li>
+          <li><a href="database.html">Database</a></li>
           <li><a href="realtime.html">Chatbot</a></li>
+          <li><a href="quizzes.html">Quizzes</a></li>
         </ul>
       </nav>
     </header>
 
     <main>
       <section>
-        <h2>Quiz: Check or Saving Throw?</h2>
+        <h2>Database Data</h2>
+        <p>This page displays data stored in the database. Here are some placeholders for actual data:</p>
         
-        <!-- Duolingo Style Quiz Screenshot -->
-        <img src="htmlAssignmentImages/duolingo_quiz_screenshot.png" alt="Quiz Example" width="500" />
+        <h3>Player Data</h3>
+        <ul>
+          <li>User 1: Completed 5 quizzes, Scored 85%</li>
+          <li>User 2: Completed 3 quizzes, Scored 90%</li>
+          <li>User 3: Completed 10 quizzes, Scored 75%</li>
+        </ul>
+
+        <h3>Game Session Logs</h3>
+        <ul>
+          <li>Session 1: 10/15/2024 - Completed</li>
+          <li>Session 2: 10/16/2024 - In Progress</li>
+          <li>Session 3: 10/17/2024 - Completed</li>
+        </ul>
         
-        <p>Answer the following questions by selecting the appropriate type of roll for each scenario.</p>
-        
-        <form action="quiz-results.html" method="POST">
-          <div>
-            <h3>1. The rogue is trying to sneak past a group of guards. What kind of roll should they make?</h3>
-            <label>
-              <input type="radio" name="question1" value="check" required /> Skill Check (Stealth)
-            </label><br />
-            <label>
-              <input type="radio" name="question1" value="saving_throw" required /> Saving Throw (Dexterity)
-            </label>
-          </div>
-
-          <div>
-            <h3>2. A fireball spell explodes near the party. What kind of roll should they make?</h3>
-            <label>
-              <input type="radio" name="question2" value="check" required /> Skill Check (Dexterity)
-            </label><br />
-            <label>
-              <input type="radio" name="question2" value="saving_throw" required /> Saving Throw (Dexterity)
-            </label>
-          </div>
-
-          <div>
-            <h3>3. The bard tries to convince a merchant to lower their prices. What kind of roll should they make?</h3>
-            <label>
-              <input type="radio" name="question3" value="check" required /> Skill Check (Persuasion)
-            </label><br />
-            <label>
-              <input type="radio" name="question3" value="saving_throw" required /> Saving Throw (Charisma)
-            </label>
-          </div>
-
-          <div>
-            <h3>4. The party encounters a trap that releases poisonous gas. What kind of roll should they make?</h3>
-            <label>
-              <input type="radio" name="question4" value="check" required /> Skill Check (Investigation)
-            </label><br />
-            <label>
-              <input type="radio" name="question4" value="saving_throw" required /> Saving Throw (Constitution)
-            </label>
-          </div>
-
-          <div>
-            <h3>5. The wizard is attempting to identify a magical artifact. What kind of roll should they make?</h3>
-            <label>
-              <input type="radio" name="question5" value="check" required /> Skill Check (Arcana)
-            </label><br />
-            <label>
-              <input type="radio" name="question5" value="saving_throw" required /> Saving Throw (Wisdom)
-            </label>
-          </div>
-
-          <button type="submit">Submit Quiz</button>
-        </form>
+        <h3>Quiz Results</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Quiz Name</th>
+              <th>User</th>
+              <th>Score</th>
+              <th>Date Taken</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Quiz 1: Basic Mechanics</td>
+              <td>User 1</td>
+              <td>85%</td>
+              <td>10/12/2024</td>
+            </tr>
+            <tr>
+              <td>Quiz 2: Combat</td>
+              <td>User 2</td>
+              <td>90%</td>
+              <td>10/13/2024</td>
+            </tr>
+            <tr>
+              <td>Quiz 3: Spellcasting</td>
+              <td>User 3</td>
+              <td>75%</td>
+              <td>10/14/2024</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </main>
 
