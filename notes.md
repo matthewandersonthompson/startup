@@ -61,3 +61,51 @@ Conflict markers: <<<<<<<, =======, >>>>>>> show the differences in files. Edit 
 ## Troubleshooting and Fixes
 - **Image Uploads**: Resolved image display issues by adjusting file paths and using SCP to upload images directly, setting permissions with `chmod 644`.
 - **Deployment**: Successfully used **deployFiles.sh** to deploy the entire project to the production server.
+
+
+# CodePen Assignments Notes
+
+## CSS Practice Assignment
+
+- **General Styling:**
+  - Used `* {}` selector to apply universal styling for font and color.
+  - Set body background color to a dark shade using `background-color: #121212;`.
+  - Styled headers, sections, and footer with padding, margin, and rounded corners for better layout.
+
+- **Header and Section Styling:**
+  - Applied distinct background colors to the header (`#555`) and sections (`#888`) for visual distinction.
+  - Increased padding and margin for a cleaner look.
+
+- **Typography:**
+  - Changed font to `'Arial', sans-serif` for better readability.
+  - Adjusted the font weight for `h2` elements to `300` for a subtler visual effect.
+  - Modified `h1` border to `dashed white` for a unique header design.
+
+- **Table Styling:**
+  - Styled the table with black borders and aligned text using `text-align: center;`.
+  - Adjusted padding for cells to ensure a balanced layout.
+
+- **Footer Styling:**
+  - Centered the footer text for a uniform look across all devices.
+  - Changed font size to `1.2em` and removed italic styling for clarity.
+
+- **Animations:**
+  - Implemented a `fly-from-left` animation to simulate content flying in from the left.
+  - Adjusted animation timing and starting point for smoother transitions.
+
+---
+
+## Additional Lessons Learned:
+
+- **CSS Specificity:** The importance of using the correct selectors to apply styles efficiently without overriding unintentionally.
+- **Consistency in Layouts:** Leveraging padding, margin, and border-radius properties to create a visually balanced design.
+- **Use of Animations:** Applying animations like `@keyframes` to enhance user experience through subtle movements.
+- **Experimenting with Colors:** Adjusting color schemes using HSL for more control over hue and saturation.
+- **Responsive Design:** Ensured that elements are flexible and centered to accommodate different screen sizes.
+
+---
+
+## Key Takeaways:
+- Always test changes in small increments to see how individual CSS properties affect the design.
+- Use animations sparingly to enhance user experience without overwhelming the interface.
+- Keep experimenting with different color and layout combinations to achieve the best visual hierarchy.
