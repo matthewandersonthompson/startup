@@ -77,3 +77,16 @@ I will use the required technologies in the following ways:
 - **Database**: MongoDB will store user data, including quiz scores, lesson progress, and chatbot performance. Predefined quiz questions will also be stored in MongoDB and pulled randomly for each quiz.
 - **WebSockets**: WebSockets will manage real-time interactions between the DM and simulated players during the chatbot sessions.
 >>>>>>> b7f3438fe72e18e478429ef506def39c74873462
+
+
+
+## HTML Deliverable  
+
+For this deliverable, I structured my application using HTML to represent key functionality placeholders.
+
+- **HTML Pages** - Six HTML pages represent different functionalities, including login, dashboard, database, quizzes, chatbot interaction, and home.
+- **Links** - Each page contains a navigation bar with links to every other page in the application, ensuring seamless transitions between features.
+- **Text** - Each page includes placeholder text representing the features the application will eventually support, such as quizzes, player data, and chatbot scenarios.
+- **Images** - Added images on the quizzes, dashboard, and chatbot pages to enhance visual engagement and represent future functionality.
+- **DB/Login** - Login form includes email and password input fields, with a placeholder for displaying the logged-in user's name. The database page contains placeholders for player data, game session logs, and quiz results.
+- **WebSocket** - The chatbot page includes a placeholder for real-time communication, which will simulate Dungeon Master scenarios with an AI-powered chatbot.
