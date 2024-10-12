@@ -1,45 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+/* General Styling */
+@import url('https://fonts.googleapis.com/css2?family=OpenAI:wght@400;700&display=swap');
 
 body {
+  font-family: 'OpenAI', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #2d2d2d;
+  background-color: #33343f;
   color: #fff;
 }
 
-header {
-  background-color: #4b3f72;
+/* Header and Footer */
+.quiz-header {
+  background-color: #5a4570;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .fantasy-header {
-  font-family: "Cinzel", serif;
-  color: white;
   font-size: 2.5rem;
+  color: white;
 }
 
 .tech-menu {
-  list-style-type: none;
+  list-style: none;
   display: flex;
   gap: 20px;
 }
 
+.tech-menu li {
+  display: inline;
+}
+
 .tech-menu li a {
   color: white;
-  font-size: 1rem;
   text-decoration: none;
-  transition: color 0.2s;
+  font-size: 1rem;
 }
 
 .tech-menu li a:hover {
-  color: #b3a9d7;
+  text-decoration: underline;
 }
 
+.quiz-footer {
+  background-color: #5a4570;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Quiz Section */
 .quiz-section {
   background-color: #3e3e3e;
   padding: 60px 40px;
@@ -56,6 +67,7 @@ header {
   color: #ffffff;
 }
 
+/* Quiz Questions */
 .quiz-question {
   display: none;
 }
@@ -70,12 +82,13 @@ label {
   margin: 15px 0;
 }
 
+/* Custom Radio Buttons */
 input[type="radio"] {
   display: none;
 }
 
 .custom-radio {
-  background-color: #4b4b4b;
+  background-color: #444654;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 15px;
@@ -98,6 +111,7 @@ input[type="radio"] {
   font-weight: bold;
 }
 
+/* Buttons */
 .continue-btn {
   padding: 12px 24px;
   background-color: limegreen;
@@ -117,6 +131,7 @@ input[type="radio"] {
   background-color: #3dbd58;
 }
 
+/* Quiz Results */
 .quiz-results {
   text-align: center;
 }
@@ -135,13 +150,4 @@ input[type="radio"] {
 
 .restart-btn:hover {
   background-color: #3dbd58;
-}
-
-.quiz-footer {
-  background-color: #4b3f72;
-  text-align: center;
-  padding: 15px 0;
-  font-family: "Cinzel", serif;
-  color: white;
-  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
