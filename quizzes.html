@@ -1,97 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quizzes - DM Training Grounds</title>
 
     <link rel="stylesheet" href="css/quizzes.css" />
-</head>
-<body>
-    <header>
-        <h1>DM Training Grounds</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="auth.html">Login</a></li>
-                <li><a href="app-data.html">Dashboard</a></li>
-                <li><a href="database.html">Database</a></li>
-                <li><a href="realtime.html">Chatbot</a></li>
-                <li><a href="quizzes.html">Quizzes</a></li>
-            </ul>
-        </nav>
+  </head>
+  <body>
+    <header class="quiz-header">
+      <h1 class="fantasy-header">DM Training Grounds</h1>
+      <nav>
+        <ul class="tech-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="auth.html">Login</a></li>
+          <li><a href="app-data.html">Dashboard</a></li>
+          <li><a href="database.html">Database</a></li>
+          <li><a href="realtime.html">Chatbot</a></li>
+          <li><a href="quizzes.html">Quizzes</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <main>
-        <section>
-            <h2>Quiz: Check or Saving Throw?</h2>
-            
-            <!-- Duolingo Style Quiz Screenshot -->
-            <img src="htmlAssignmentImages/duolingo_quiz_screenshot.png" alt="Quiz Example" width="500" />
-            
-            <p>Answer the following questions by selecting the appropriate type of roll for each scenario.</p>
-            
-            <form action="quiz-results.html" method="POST">
-              <div>
-                <h3>1. The rogue is trying to sneak past a group of guards. What kind of roll should they make?</h3>
-                <label>
-                  <input type="radio" name="question1" value="check" required /> Skill Check (Stealth)
-                </label><br />
-                <label>
-                  <input type="radio" name="question1" value="saving_throw" required /> Saving Throw (Dexterity)
-                </label>
-              </div>
+    <main class="quiz-section">
+      <section id="quiz">
+        <h2 class="quiz-title">Quiz: Check or Saving Throw?</h2>
 
-              <div>
-                <h3>2. A fireball spell explodes near the party. What kind of roll should they make?</h3>
-                <label>
-                  <input type="radio" name="question2" value="check" required /> Skill Check (Dexterity)
-                </label><br />
-                <label>
-                  <input type="radio" name="question2" value="saving_throw" required /> Saving Throw (Dexterity)
-                </label>
-              </div>
+        <div class="quiz-question active" data-question="1">
+          <p>1. The rogue is trying to sneak past a group of guards. What kind of roll should they make?</p>
+          <label class="custom-radio">
+            <input type="radio" name="question1" value="check" required />
+            <span>Skill Check (Stealth)</span>
+          </label>
+          <label class="custom-radio">
+            <input type="radio" name="question1" value="saving_throw" required />
+            <span>Saving Throw (Dexterity)</span>
+          </label>
+          <button class="continue-btn">Continue</button>
+        </div>
 
-              <div>
-                <h3>3. The bard tries to convince a merchant to lower their prices. What kind of roll should they make?</h3>
-                <label>
-                  <input type="radio" name="question3" value="check" required /> Skill Check (Persuasion)
-                </label><br />
-                <label>
-                  <input type="radio" name="question3" value="saving_throw" required /> Saving Throw (Charisma)
-                </label>
-              </div>
+        <div class="quiz-question" data-question="2">
+          <p>2. A fireball spell explodes near the party. What kind of roll should they make?</p>
+          <label class="custom-radio">
+            <input type="radio" name="question2" value="check" required />
+            <span>Skill Check (Dexterity)</span>
+          </label>
+          <label class="custom-radio">
+            <input type="radio" name="question2" value="saving_throw" required />
+            <span>Saving Throw (Dexterity)</span>
+          </label>
+          <button class="continue-btn">Continue</button>
+        </div>
 
-              <div>
-                <h3>4. The party encounters a trap that releases poisonous gas. What kind of roll should they make?</h3>
-                <label>
-                  <input type="radio" name="question4" value="check" required /> Skill Check (Investigation)
-                </label><br />
-                <label>
-                  <input type="radio" name="question4" value="saving_throw" required /> Saving Throw (Constitution)
-                </label>
-              </div>
+        <div class="quiz-question" data-question="3">
+          <p>3. The bard tries to convince a merchant to lower their prices. What kind of roll should they make?</p>
+          <label class="custom-radio">
+            <input type="radio" name="question3" value="check" required />
+            <span>Skill Check (Persuasion)</span>
+          </label>
+          <label class="custom-radio">
+            <input type="radio" name="question3" value="saving_throw" required />
+            <span>Saving Throw (Charisma)</span>
+          </label>
+          <button class="continue-btn">Continue</button>
+        </div>
 
-              <div>
-                <h3>5. The wizard is attempting to identify a magical artifact. What kind of roll should they make?</h3>
-                <label>
-                  <input type="radio" name="question5" value="check" required /> Skill Check (Arcana)
-                </label><br />
-                <label>
-                  <input type="radio" name="question5" value="saving_throw" required /> Saving Throw (Wisdom)
-                </label>
-              </div>
+        <div class="quiz-question" data-question="4">
+          <p>4. The party encounters a trap that releases poisonous gas. What kind of roll should they make?</p>
+          <label class="custom-radio">
+            <input type="radio" name="question4" value="check" required />
+            <span>Skill Check (Investigation)</span>
+          </label>
+          <label class="custom-radio">
+            <input type="radio" name="question4" value="saving_throw" required />
+            <span>Saving Throw (Constitution)</span>
+          </label>
+          <button class="continue-btn">Continue</button>
+        </div>
 
-              <button type="submit">Submit Quiz</button>
-            </form>
-        </section>
+        <div class="quiz-question" data-question="5">
+          <p>5. The wizard is attempting to identify a magical artifact. What kind of roll should they make?</p>
+          <label class="custom-radio">
+            <input type="radio" name="question5" value="check" required />
+            <span>Skill Check (Arcana)</span>
+          </label>
+          <label class="custom-radio">
+            <input type="radio" name="question5" value="saving_throw" required />
+            <span>Saving Throw (Wisdom)</span>
+          </label>
+          <button class="continue-btn">Continue</button>
+        </div>
+
+        <div class="quiz-results" style="display:none;">
+          <h3>Your Score</h3>
+          <p id="score-display">Calculating...</p>
+          <button class="restart-btn">Restart Quiz</button>
+        </div>
+      </section>
     </main>
 
-    <footer>
-        <hr />
-        <p>&copy; 2024 WorldSmith LLC</p>
+    <footer class="quiz-footer">
+      <p>&copy; 2024 WorldSmith LLC</p>
     </footer>
 
     <script src="js/quizzes.js"></script>
-</body>
+  </body>
 </html>
