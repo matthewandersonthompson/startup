@@ -1,0 +1,160 @@
+/* General Styling */
+body {
+  font-family: 'OpenAI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #33343f;
+  color: #fff;
+}
+
+/* Header and Footer */
+.quiz-header {
+  background-color: #5a4570;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fantasy-header {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.tech-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.tech-menu li {
+  display: inline;
+}
+
+.tech-menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.tech-menu li a:hover {
+  text-decoration: underline;
+}
+
+.quiz-footer {
+  background-color: #5a4570;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Content Section */
+.content {
+  display: flex;
+  height: 80vh;
+  margin: 0;
+}
+
+/* Sidebar Styling */
+aside {
+  width: 20%;
+  background-color: #292a34;
+  padding: 20px;
+  border-right: 3px solid #5a4570;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: sticky; /* Stick to top */
+  top: 0;
+}
+
+aside h2,
+aside label {
+  color: white;
+  font-size: 0.9rem; /* Adjusted for smaller size */
+  margin-bottom: 10px;
+}
+
+aside select,
+aside textarea,
+aside button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 8px;
+  font-size: 0.8rem;
+  background-color: #444654;
+  border: none;
+  color: white;
+}
+
+.start-btn {
+  background-color: #5a4570;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px; /* Lock to the bottom */
+}
+
+.start-btn:hover {
+  background-color: #6f5a8a;
+}
+
+/* Chatbot Section */
+.chatbot-section {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: #33343f;
+  padding: 20px;
+  position: relative;
+}
+
+.scene-title {
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene-title h2 {
+  font-size: 3rem; /* 1.5x bigger */
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centered horizontally and vertically */
+}
+
+/* Chat Input Area */
+.chat-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; /* Added some space between the input and "Let's Set the Scene" */
+}
+
+.chat-input input {
+  width: 70%;
+  padding: 10px;
+  background-color: #444654;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.chat-input button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #5a4570;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #6f5a8a;
+}

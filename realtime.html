@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chatbot - DM Training Grounds</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styling.css" />
   </head>
   <body>
-    <header>
-      <h1>DM Training Grounds</h1>
+    <header class="quiz-header">
+      <h1 class="fantasy-header">DM Training Grounds</h1>
       <nav>
-        <ul>
+        <ul class="tech-menu">
           <li><a href="index.html">Home</a></li>
           <li><a href="auth.html">Login</a></li>
           <li><a href="app-data.html">Dashboard</a></li>
@@ -21,56 +21,50 @@
       </nav>
     </header>
 
-    <main>
-      <section>
-        <h2>AI Chatbot - Dungeon Master Training</h2>
-        
-        <!-- ChatGPT Screenshot -->
-        <img src="htmlAssignmentImages/chatgpt_screenshot.png" alt="ChatGPT Example" width="500" />
-        
-        <p>Select the type of scene you'd like to practice DMing:</p>
-        
-        <!-- Dropdown for scene selection -->
-        <form action="#">
-          <label for="scene">Choose a scene:</label>
-          <select id="scene" name="scene" required>
-            <option value="" disabled selected>Select a scene</option>
-            <option value="tavern">Tavern Encounter</option>
-            <option value="dungeon">Dungeon Exploration</option>
-            <option value="combat">Combat Scenario</option>
-            <option value="puzzle">Puzzle Challenge</option>
-            <option value="wilderness">Wilderness Survival</option>
-            <option value="roleplay">Roleplaying Conversation</option>
-          </select>
+    <div class="content">
+      <!-- Sidebar for scene selection -->
+      <aside>
+        <h2>Select a Scene to Practice</h2>
+        <label for="scene">Choose a scene:</label>
+        <select id="scene" name="scene" required>
+          <option value="" disabled selected>Select a scene</option>
+          <option value="tavern">Tavern Encounter</option>
+          <option value="dungeon">Dungeon Exploration</option>
+          <option value="combat">Combat Scenario</option>
+          <option value="puzzle">Puzzle Challenge</option>
+          <option value="wilderness">Wilderness Survival</option>
+          <option value="roleplay">Roleplaying Conversation</option>
+        </select>
 
-          <h3>Are you ready to start DMing?</h3>
-          <p>Enter your DM prompts below to begin:</p>
+        <label for="dmPrompt">DM Prompt:</label>
+        <textarea
+          id="dmPrompt"
+          name="dmPrompt"
+          rows="3"
+          placeholder="Describe your scene or interact with the players..."
+        ></textarea>
 
-          <!-- DM prompt input -->
-          <label for="dmPrompt">DM Prompt:</label><br />
-          <textarea id="dmPrompt" name="dmPrompt" rows="4" cols="50" placeholder="Describe your scene or interact with the players..."></textarea><br />
+        <button class="start-btn">Let's Adventure!</button>
+      </aside>
 
-          <button type="submit">Start Session</button>
-        </form>
+      <!-- Chatbot area -->
+      <section class="chatbot-section">
+        <div class="scene-title">
+          <h2>Let's Set the Scene...</h2>
+        </div>
 
-        <!-- Placeholder for WebSocket data -->
-        <h3>Real-time Player Responses</h3>
-        <div id="chatWindow">
-          <p><em>Waiting for player responses...</em></p> <!-- Placeholder for real-time communication -->
+        <div class="chat-input">
+          <input
+            type="text"
+            placeholder="Enter your message..."
+            id="chatMessage"
+          />
+          <button>Send</button>
         </div>
       </section>
+    </div>
 
-      <section>
-        <h3>How It Works</h3>
-        <p>
-          Once you submit your prompt, the AI-powered chatbot will simulate player interactions based on your selected scene.
-          You can continue to prompt the AI with new actions, describe different scenarios, and practice being a Dungeon Master in a safe environment.
-        </p>
-      </section>
-    </main>
-
-    <footer>
-      <hr />
+    <footer class="quiz-footer">
       <p>&copy; 2024 WorldSmith LLC</p>
     </footer>
   </body>
