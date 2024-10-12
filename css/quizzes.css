@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #2d2d2d;
+  color: #fff;
+}
+
+header {
+  background-color: #4b3f72;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fantasy-header {
+  font-family: "Cinzel", serif;
+  color: white;
+  font-size: 2.5rem;
+}
+
+.tech-menu {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.tech-menu li a {
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.tech-menu li a:hover {
+  color: #b3a9d7;
+}
+
+.quiz-section {
+  background-color: #3e3e3e;
+  padding: 60px 40px;
+  max-width: 800px;
+  margin: 60px auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+.quiz-question {
+  display: none;
+}
+
+.quiz-question.active {
+  display: block;
+}
+
+label {
+  font-size: 1.2rem;
+  display: block;
+  margin: 15px 0;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.custom-radio {
+  background-color: #4b4b4b;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.custom-radio:hover {
+  background-color: #5c5c5c;
+}
+
+.custom-radio input:checked + span {
+  background-color: limegreen;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.continue-btn {
+  padding: 12px 24px;
+  background-color: limegreen;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin-left: auto;
+}
+
+.continue-btn:hover {
+  background-color: #3dbd58;
+}
+
+.quiz-results {
+  text-align: center;
+}
+
+.restart-btn {
+  padding: 12px 24px;
+  background-color: limegreen;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.restart-btn:hover {
+  background-color: #3dbd58;
+}
+
+.quiz-footer {
+  background-color: #4b3f72;
+  text-align: center;
+  padding: 15px 0;
+  font-family: "Cinzel", serif;
+  color: white;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
