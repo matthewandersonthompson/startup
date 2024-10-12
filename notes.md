@@ -109,3 +109,4 @@ Conflict markers: <<<<<<<, =======, >>>>>>> show the differences in files. Edit 
 - Always test changes in small increments to see how individual CSS properties affect the design.
 - Use animations sparingly to enhance user experience without overwhelming the interface.
 - Keep experimenting with different color and layout combinations to achieve the best visual hierarchy.
+- just testing some stuff
