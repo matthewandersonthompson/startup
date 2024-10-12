@@ -10,7 +10,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'OpenAI', sans-serif; /* Match the same font across both files */
+    font-family: 'OpenAI', sans-serif;
     background-color: #33343f;
     color: white;
   }
@@ -20,24 +20,31 @@
     flex-direction: column;
   }
   
-  /* Header and Footer (Matching the chatbot header/footer) */
+  /* Header and Footer - MATCHES quizzes.css */
   .quiz-header {
     background-color: var(--main-color);
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 80px; /* Ensure consistent height */
   }
   
   .fantasy-header {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Font size same as quizzes.css */
+    font-family: 'OpenAI', sans-serif; /* Ensure same font family */
     color: white;
+    margin: 0;
+    font-weight: bold; /* Make header bold */
+    display: flex;
+    align-items: center; /* Center vertically */
   }
   
   .tech-menu {
     list-style: none;
     display: flex;
     gap: 20px;
+    align-items: center; /* Center menu vertically */
   }
   
   .tech-menu li {
@@ -47,6 +54,10 @@
   .tech-menu li a {
     color: white;
     text-decoration: none;
+    font-family: 'OpenAI', sans-serif; /* Ensure same font */
+    font-size: 1rem; /* Consistent font size */
+    padding: 5px 10px; /* Ensure consistent padding inside links */
+    font-weight: bold; /* Make menu items bold */
   }
   
   .tech-menu li a:hover {
@@ -54,7 +65,7 @@
   }
   
   .quiz-footer {
-    background-color: var(--main-color); /* Keep footer background consistent */
+    background-color: var(--main-color); /* Footer matches header */
     padding: 10px;
     text-align: center;
     font-size: 0.9rem;
@@ -62,7 +73,7 @@
   }
   
   .quiz-footer a {
-    color: #b3a9d7; /* Match the color of the links */
+    color: #b3a9d7; /* Match footer link color */
     text-decoration: none;
   }
   
@@ -75,7 +86,7 @@
     background: rgba(19, 35, 47, 0.9);
     padding: 40px;
     min-width: 400px;
-    max-width: 1600px; /* Make modal twice as wide */
+    max-width: 1600px; /* Keep modal wide */
     margin: 40px auto;
     border-radius: 10px; /* Smoother border-radius */
     box-shadow: 0 8px 20px 8px rgba(19, 35, 47, 0.4); /* Deeper shadow for a modern look */
