@@ -95,10 +95,10 @@ For this deliverable, I structured my application using HTML to represent key fu
 ## CSS Deliverable
 For this deliverable, I styled the application to achieve a consistent, responsive design.
 
-- **Header, Footer, and Main Content Body **- Consistent styling across all pages with proper spacing, color, and alignment.
-- **Navigation Elements **- Removed bold styling, refined padding, and applied hover effects to match the overall theme.
-- **Responsive to Window Resizing **- Fully responsive design that adapts smoothly to various screen sizes and devices.
-- **Modal Windows **- Clean, functional modals for login and signup, with responsive resizing on all devices.
-- **Application Elements **- Applied good contrast, spacing, and clean layout for modern visual appeal.
-- **Application Text Content **- Ensured consistent fonts, sizes, and spacing for all headings, body text, and links.
-- **Application Images **- Placeholder images in place for future visual elements, with room for styling updates as needed.
+- **Header, Footer, and Main Content Body**- Consistent styling across all pages with proper spacing, color, and alignment.
+- **Navigation Elements**- Removed bold styling, refined padding, and applied hover effects to match the overall theme.
+- **Responsive to Window Resizing**- Fully responsive design that adapts smoothly to various screen sizes and devices.
+- **Modal Windows**- Clean, functional modals for login and signup, with responsive resizing on all devices.
+- **Application Elements**- Applied good contrast, spacing, and clean layout for modern visual appeal.
+- **Application Text Content**- Ensured consistent fonts, sizes, and spacing for all headings, body text, and links.
+- **Application Images**- Placeholder images in place for future visual elements, with room for styling updates as needed.
