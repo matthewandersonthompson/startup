@@ -3,47 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DM Training Grounds</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Home - DM Training Grounds</title>
+    <link rel="stylesheet" href="css/home.css" />
   </head>
   <body>
-    <header>
-      <h1>DM Training Grounds</h1>
+    <header class="quiz-header">
+      <h1 class="fantasy-header">DM Training Grounds</h1>
       <nav>
-        <ul>
+        <ul class="tech-menu">
           <li><a href="index.html">Home</a></li>
           <li><a href="auth.html">Login</a></li>
           <li><a href="app-data.html">Dashboard</a></li>
           <li><a href="database.html">Database</a></li>
           <li><a href="realtime.html">Chatbot</a></li>
           <li><a href="quizzes.html">Quizzes</a></li>
+          <li>USERNAME</li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <section>
-        <h2>Welcome to DM Training Grounds</h2>
-        <p>
-          DM Training Grounds helps you practice and improve your Dungeon Master
-          skills. Explore learning modules, take quizzes, and interact with our
-          AI-powered chatbot to simulate real player interactions.
-        </p>
-        <a href="auth.html">Get Started</a>
+      <section class="intro-section">
+        <div class="image-wrapper">
+          <img src="app-dataImages/dmskills.png" alt="Dungeon Master" />
+        </div>
+        <div class="headline">
+          <h2>Are you a new Dungeon Master looking to grow your skills and know-how?</h2>
+          <a href="auth.html" class="action-btn">Let's Adventure!</a>
+        </div>
       </section>
 
-      <section>
-        <h3>Key Features</h3>
-        <ul>
-          <li>Interactive learning modules</li>
-          <li>AI-powered chatbot to simulate players</li>
-          <li>Real-time feedback and progress tracking</li>
-        </ul>
+      <section class="links-section">
+        <h3>Explore Our Site</h3>
+        <div class="page-list">
+          <div class="page-item">
+            <a href="dashboard.html">Dashboard</a>
+            <p>Your personal DM training center! Track your progress and revisit your quizzes and chatbot sessions.</p>
+          </div>
+          <div class="page-item">
+            <a href="database.html">Database</a>
+            <p>Explore our treasure trove of monsters, NPCs, and magical items for your campaigns!</p>
+          </div>
+          <div class="page-item">
+            <a href="realtime.html">Chatbot</a>
+            <p>Practice your DMing skills by chatting with our AI-powered DM practice bot.</p>
+          </div>
+          <div class="page-item">
+            <a href="quizzes.html">Quizzes</a>
+            <p>Test your knowledge with fun quizzes that will challenge even the most experienced Dungeon Masters!</p>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <hr />
+    <footer class="quiz-footer">
       <p>&copy; 2024 WorldSmith LLC</p>
       <a href="https://github.com/matthewandersonthompson/startup">GitHub Repository</a>
     </footer>
