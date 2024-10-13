@@ -20,7 +20,7 @@
     flex-direction: column;
   }
   
-  /* Header and Footer - MATCHES quizzes.css */
+  /* Header and Footer - MATCHES quizzes.css exactly */
   .quiz-header {
     background-color: var(--main-color);
     padding: 20px;
@@ -28,23 +28,23 @@
     justify-content: space-between;
     align-items: center;
     min-height: 80px; /* Ensure consistent height */
+    max-height: 80px;
   }
   
   .fantasy-header {
-    font-size: 2.5rem; /* Font size same as quizzes.css */
-    font-family: 'OpenAI', sans-serif; /* Ensure same font family */
+    font-size: 2.5rem;
     color: white;
+    font-weight: bold; /* Ensure the header text is bold */
     margin: 0;
-    font-weight: bold; /* Make header bold */
-    display: flex;
-    align-items: center; /* Center vertically */
   }
   
   .tech-menu {
     list-style: none;
     display: flex;
     gap: 20px;
-    align-items: center; /* Center menu vertically */
+    margin: 0; /* Ensure no extra margins */
+    padding: 0; /* Ensure no extra padding */
+    align-items: center; /* Vertically center the menu */
   }
   
   .tech-menu li {
@@ -56,8 +56,8 @@
     text-decoration: none;
     font-family: 'OpenAI', sans-serif; /* Ensure same font */
     font-size: 1rem; /* Consistent font size */
-    padding: 5px 10px; /* Ensure consistent padding inside links */
-    font-weight: bold; /* Make menu items bold */
+    font-weight: bold; /* Ensure menu items are bold */
+    padding: 5px 10px; /* Ensure padding inside links */
   }
   
   .tech-menu li a:hover {

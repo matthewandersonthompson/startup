@@ -13,6 +13,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 80px; /* Ensure consistent height */
+  max-height: 80px;
 }
 
 .fantasy-header {
