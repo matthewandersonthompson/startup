@@ -4,17 +4,21 @@ body {
   padding: 0;
   background-color: #33343f;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Header and Footer */
+main {
+  flex: 1;
+}
+
 .quiz-header {
   background-color: #5a4570;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 80px; /* Ensure consistent height */
-  max-height: 80px;
 }
 
 .fantasy-header {
@@ -28,14 +32,9 @@ body {
   gap: 20px;
 }
 
-.tech-menu li {
-  display: inline;
-}
-
 .tech-menu li a {
   color: white;
   text-decoration: none;
-  font-size: 1rem;
 }
 
 .tech-menu li a:hover {
@@ -47,9 +46,18 @@ body {
   padding: 10px;
   text-align: center;
   font-size: 0.9rem;
+  margin-top: auto;
 }
 
-/* Quiz Section */
+.quiz-footer a {
+  color: #b3a9d7;
+  text-decoration: none;
+}
+
+.quiz-footer a:hover {
+  text-decoration: underline;
+}
+
 .quiz-section {
   background-color: #3e3e3e;
   padding: 60px 40px;
@@ -66,7 +74,6 @@ body {
   color: #ffffff;
 }
 
-/* Quiz Questions */
 .quiz-question {
   display: none;
 }
@@ -81,7 +88,6 @@ label {
   margin: 15px 0;
 }
 
-/* Custom Radio Buttons */
 input[type="radio"] {
   display: none;
 }
@@ -110,7 +116,6 @@ input[type="radio"] {
   font-weight: bold;
 }
 
-/* Buttons */
 .continue-btn {
   padding: 12px 24px;
   background-color: limegreen;
@@ -130,7 +135,6 @@ input[type="radio"] {
   background-color: #3dbd58;
 }
 
-/* Quiz Results */
 .quiz-results {
   text-align: center;
 }
@@ -149,4 +153,50 @@ input[type="radio"] {
 
 .restart-btn:hover {
   background-color: #3dbd58;
+}
+
+@media (max-width: 768px) {
+  .quiz-section {
+    padding: 40px 20px;
+    max-width: 100%;
+    margin: 40px 10px;
+  }
+
+  .quiz-title {
+    font-size: 1.75rem;
+    margin-bottom: 30px;
+  }
+
+  .continue-btn, .restart-btn {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .quiz-header, .quiz-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fantasy-header {
+    font-size: 2rem;
+  }
+
+  .tech-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .quiz-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .continue-btn, .restart-btn {
+    padding: 8px 16px;
+  }
+
+  .quiz-section {
+    padding: 20px 10px;
+  }
 }
