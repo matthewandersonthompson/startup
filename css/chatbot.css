@@ -1,21 +1,25 @@
-/* General Styling */
 body {
   font-family: 'OpenAI', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #33343f;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Header and Footer */
-.quiz-header {
+.content {
+  display: flex;
+  flex: 1;
+}
+
+.quiz-header, .quiz-footer {
   background-color: #5a4570;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 80px; /* Ensure consistent height */
-  max-height: 80px;
 }
 
 .fantasy-header {
@@ -29,10 +33,6 @@ body {
   gap: 20px;
 }
 
-.tech-menu li {
-  display: inline;
-}
-
 .tech-menu li a {
   color: white;
   text-decoration: none;
@@ -43,20 +43,20 @@ body {
 }
 
 .quiz-footer {
-  background-color: #5a4570;
-  padding: 10px;
   text-align: center;
   font-size: 0.9rem;
+  margin-top: auto;
 }
 
-/* Content Section */
-.content {
-  display: flex;
-  height: 80vh;
-  margin: 0;
+.quiz-footer a {
+  color: #b3a9d7;
+  text-decoration: none;
 }
 
-/* Sidebar Styling */
+.quiz-footer a:hover {
+  text-decoration: underline;
+}
+
 aside {
   width: 20%;
   background-color: #292a34;
@@ -65,20 +65,15 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  position: sticky; /* Stick to top */
-  top: 0;
 }
 
-aside h2,
-aside label {
+aside h2, aside label {
   color: white;
-  font-size: 0.9rem; /* Adjusted for smaller size */
+  font-size: 0.9rem;
   margin-bottom: 10px;
 }
 
-aside select,
-aside textarea,
-aside button {
+aside select, aside textarea, aside button {
   width: 100%;
   margin-bottom: 15px;
   padding: 8px;
@@ -95,15 +90,14 @@ aside button {
   font-size: 1.1rem;
   padding: 10px;
   cursor: pointer;
-  position: absolute;
-  bottom: 20px; /* Lock to the bottom */
+  display: block; 
+  margin: 10px auto 0; 
 }
 
 .start-btn:hover {
   background-color: #6f5a8a;
 }
 
-/* Chatbot Section */
 .chatbot-section {
   width: 80%;
   display: flex;
@@ -112,6 +106,18 @@ aside button {
   background-color: #33343f;
   padding: 20px;
   position: relative;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.image-wrapper img {
+  width: 150px; 
+  height: auto;
+  border-radius: 10px;
 }
 
 .scene-title {
@@ -123,20 +129,19 @@ aside button {
 }
 
 .scene-title h2 {
-  font-size: 3rem; /* 1.5x bigger */
+  font-size: 3rem;
   color: white;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centered horizontally and vertically */
+  transform: translate(-50%, -50%);
 }
 
-/* Chat Input Area */
 .chat-input {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px; /* Added some space between the input and "Let's Set the Scene" */
+  margin-bottom: 10px;
 }
 
 .chat-input input {
@@ -159,4 +164,58 @@ aside button {
 
 .chat-input button:hover {
   background-color: #6f5a8a;
+}
+
+@media (max-width: 1200px) {
+  .content {
+    flex-direction: column;
+  }
+
+  aside {
+    width: 100%;
+    border-right: none;
+    border-bottom: 3px solid #5a4570;
+  }
+
+  .chatbot-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .scene-title h2 {
+    font-size: 2.5rem;
+  }
+
+  .chat-input input {
+    width: 60%;
+  }
+
+  .chat-input button {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .quiz-header, .quiz-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fantasy-header {
+    font-size: 2rem;
+  }
+
+  .tech-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-input input {
+    width: 50%;
+  }
+
+  .chat-input button {
+    padding: 10px 10px;
+  }
 }
