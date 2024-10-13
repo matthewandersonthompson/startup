@@ -1,0 +1,165 @@
+body {
+  font-family: 'OpenAI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #33343f;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.quiz-header {
+  background-color: #5a4570;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 80px;
+}
+
+.fantasy-header {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.tech-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.tech-menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.tech-menu li a:hover {
+  text-decoration: underline;
+}
+
+.quiz-footer {
+  background-color: #5a4570;
+  padding: 40px 20px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.quiz-footer p {
+  margin: 0;
+}
+
+.quiz-footer a {
+  color: #b3a9d7;
+  text-decoration: none;
+}
+
+.quiz-footer a:hover {
+  text-decoration: underline;
+}
+
+.disclaimer-modal {
+  background-color: #ff8c00;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.data-section {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border: 1px solid white;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #5a4570;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #444654;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #3e3e3e;
+}
+
+@media (max-width: 768px) {
+  .quiz-header, .quiz-footer {
+      flex-direction: column;
+      text-align: center;
+      padding: 15px;
+  }
+
+  .fantasy-header {
+      font-size: 2rem;
+  }
+
+  .tech-menu {
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  .data-section {
+      padding: 15px;
+  }
+
+  table, th, td {
+      padding: 8px;
+  }
+
+  .disclaimer-modal {
+      font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .quiz-header, .quiz-footer {
+      flex-direction: column;
+      text-align: center;
+      padding: 10px;
+  }
+
+  .fantasy-header {
+      font-size: 1.8rem;
+  }
+
+  .tech-menu {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  table, th, td {
+      padding: 5px;
+  }
+
+  .disclaimer-modal {
+      font-size: 1rem;
+  }
+
+  .data-section {
+      padding: 10px;
+  }
+}
