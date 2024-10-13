@@ -65,19 +65,18 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  position: sticky;
+  top: 0;
 }
 
-aside h2, aside label {
-  color: white;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
+aside h2, aside label, aside select, aside textarea, .start-btn {
+  margin-bottom: 20px; 
 }
 
 aside select, aside textarea, aside button {
   width: 100%;
-  margin-bottom: 15px;
-  padding: 8px;
-  font-size: 0.8rem;
+  padding: 10px;
+  font-size: 0.9rem;
   background-color: #444654;
   border: none;
   color: white;
@@ -91,7 +90,7 @@ aside select, aside textarea, aside button {
   padding: 10px;
   cursor: pointer;
   display: block; 
-  margin: 10px auto 0; 
+  margin: 0 auto; 
 }
 
 .start-btn:hover {
@@ -102,7 +101,7 @@ aside select, aside textarea, aside button {
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   background-color: #33343f;
   padding: 20px;
   position: relative;
@@ -111,37 +110,30 @@ aside select, aside textarea, aside button {
 .image-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .image-wrapper img {
-  width: 150px; 
+  width: 40%; 
   height: auto;
   border-radius: 10px;
 }
 
 .scene-title {
   text-align: center;
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 30px; 
 }
 
 .scene-title h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .chat-input {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .chat-input input {
@@ -184,7 +176,7 @@ aside select, aside textarea, aside button {
 
 @media (max-width: 768px) {
   .scene-title h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .chat-input input {
