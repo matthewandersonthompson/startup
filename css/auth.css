@@ -148,7 +148,6 @@ h3 {
   text-decoration: underline;
 }
 
-/* Modal Styling */
 .modal-container {
   background: rgba(19, 35, 47, 0.9);
   padding: 40px;
@@ -223,7 +222,6 @@ h3 {
   text-decoration: underline;
 }
 
-/* Responsive Styling for Modals */
 @media (max-width: 768px) {
   .modal-container {
     padding: 30px;
@@ -254,7 +252,6 @@ h3 {
   }
 }
 
-/* Headline and other sections responsive adjustments */
 @media (max-width: 1200px) {
   .intro-section {
     flex-direction: column;

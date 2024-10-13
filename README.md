@@ -90,3 +90,15 @@ For this deliverable, I structured my application using HTML to represent key fu
 - **Images** - Added images on the quizzes, dashboard, and chatbot pages to enhance visual engagement and represent future functionality.
 - **DB/Login** - Login form includes email and password input fields, with a placeholder for displaying the logged-in user's name. The database page contains placeholders for player data, game session logs, and quiz results.
 - **WebSocket** - The chatbot page includes a placeholder for real-time communication, which will simulate Dungeon Master scenarios with an AI-powered chatbot.
+
+
+## CSS Deliverable
+For this deliverable, I styled the application to achieve a consistent, responsive design.
+
+- **Header, Footer, and Main Content Body **- Consistent styling across all pages with proper spacing, color, and alignment.
+- **Navigation Elements **- Removed bold styling, refined padding, and applied hover effects to match the overall theme.
+- **Responsive to Window Resizing **- Fully responsive design that adapts smoothly to various screen sizes and devices.
+- **Modal Windows **- Clean, functional modals for login and signup, with responsive resizing on all devices.
+- **Application Elements **- Applied good contrast, spacing, and clean layout for modern visual appeal.
+- **Application Text Content **- Ensured consistent fonts, sizes, and spacing for all headings, body text, and links.
+- **Application Images **- Placeholder images in place for future visual elements, with room for styling updates as needed.
