@@ -1,3 +1,4 @@
+/* General Styling */
 body {
   font-family: 'OpenAI', sans-serif;
   margin: 0;
@@ -13,6 +14,7 @@ main {
   flex: 1;
 }
 
+/* Header and Footer */
 .quiz-header {
   background-color: #5a4570;
   padding: 20px;
@@ -41,12 +43,19 @@ main {
   text-decoration: underline;
 }
 
+/* Updated Footer */
 .quiz-footer {
   background-color: #5a4570;
-  padding: 10px;
-  text-align: center;
+  padding: 40px 20px; /* Increase the top and bottom padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 0.9rem;
   margin-top: auto;
+}
+
+.quiz-footer p {
+  margin: 0;
 }
 
 .quiz-footer a {
@@ -58,6 +67,8 @@ main {
   text-decoration: underline;
 }
 
+
+/* Quiz Section */
 .quiz-section {
   background-color: #3e3e3e;
   padding: 60px 40px;
@@ -74,6 +85,7 @@ main {
   color: #ffffff;
 }
 
+/* Quiz Questions */
 .quiz-question {
   display: none;
 }
@@ -88,6 +100,7 @@ label {
   margin: 15px 0;
 }
 
+/* Custom Radio Buttons */
 input[type="radio"] {
   display: none;
 }
@@ -116,6 +129,7 @@ input[type="radio"] {
   font-weight: bold;
 }
 
+/* Buttons */
 .continue-btn {
   padding: 12px 24px;
   background-color: limegreen;
@@ -135,6 +149,7 @@ input[type="radio"] {
   background-color: #3dbd58;
 }
 
+/* Quiz Results */
 .quiz-results {
   text-align: center;
 }
@@ -155,6 +170,7 @@ input[type="radio"] {
   background-color: #3dbd58;
 }
 
+/* Responsive Styling */
 @media (max-width: 768px) {
   .quiz-section {
     padding: 40px 20px;
@@ -176,6 +192,7 @@ input[type="radio"] {
   .quiz-header, .quiz-footer {
     flex-direction: column;
     text-align: center;
+    padding: 20px; /* Ensure padding consistency */
   }
 
   .fantasy-header {
@@ -185,6 +202,10 @@ input[type="radio"] {
   .tech-menu {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .quiz-footer {
+    flex-direction: column;
   }
 
   .quiz-title {
