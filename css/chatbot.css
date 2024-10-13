@@ -74,12 +74,18 @@ aside h2, aside label, aside select, aside textarea, .start-btn {
 }
 
 aside select, aside textarea, aside button {
-  width: 100%;
+  width: calc(100% - 40px); 
   padding: 10px;
   font-size: 0.9rem;
   background-color: #444654;
   border: none;
   color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+aside textarea {
+  resize: none; 
 }
 
 .start-btn {
@@ -167,6 +173,7 @@ aside select, aside textarea, aside button {
     width: 100%;
     border-right: none;
     border-bottom: 3px solid #5a4570;
+    padding: 20px 30px; 
   }
 
   .chatbot-section {
@@ -185,6 +192,10 @@ aside select, aside textarea, aside button {
 
   .chat-input button {
     padding: 10px 15px;
+  }
+
+  aside {
+    padding: 20px 40px; 
   }
 }
 
@@ -209,5 +220,19 @@ aside select, aside textarea, aside button {
 
   .chat-input button {
     padding: 10px 10px;
+  }
+
+  aside {
+    padding: 20px 10px; 
+    border-right: none;
+    border-bottom: 3px solid #5a4570;
+  }
+
+  
+  aside select, aside textarea, aside button {
+    width: calc(100% - 60px); 
+    padding: 10px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
