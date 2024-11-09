@@ -2,11 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/chatbot.css';
+import { dm } from '../assets/images'; // Import the dm image from images.js
 
 const Chatbot = () => {
   return (
     <div>
-      
       <div className="content">
         <aside>
           <h2>Select a Scene to Practice</h2>
@@ -34,7 +34,7 @@ const Chatbot = () => {
 
         <section className="chatbot-section">
           <div className="image-wrapper">
-            <img src="../assets/images/dm.png" alt="DM Image" />
+            <img src={dm} alt="DM Image" /> {/* Use imported dm image here */}
           </div>
           <div className="scene-title">
             <h2>Let's Set the Scene...</h2>
@@ -50,7 +50,6 @@ const Chatbot = () => {
           </div>
         </section>
       </div>
-
     </div>
   );
 };
