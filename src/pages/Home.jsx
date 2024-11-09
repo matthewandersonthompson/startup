@@ -2,15 +2,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/home.css';
+import { dmskills } from '../assets/images'; // Import the dmskills image from images.js
 
 const Home = () => {
   return (
     <div>
-
       <main>
         <section className="intro-section">
           <div className="image-wrapper">
-            <img src="../assets/images/dmskills.png" alt="Dungeon Master" />
+            <img src={dmskills} alt="Dungeon Master" /> {/* Use imported dmskills image here */}
           </div>
           <div className="headline">
             <h2>Are you a new Dungeon Master looking to grow your skills and know-how?</h2>
@@ -40,7 +40,6 @@ const Home = () => {
           </div>
         </section>
       </main>
-
     </div>
   );
 };
