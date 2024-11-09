@@ -6,19 +6,6 @@ import '../styles/auth.css';
 const Auth = () => {
   return (
     <div>
-      <header className="quiz-header">
-        <h1 className="fantasy-header">DM Training Grounds</h1>
-        <nav>
-          <ul className="tech-menu">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/dashboard">Dashboard</Link></li>
-            <li><Link to="/chatbot">Chatbot</Link></li>
-            <li><Link to="/quizzes">Quizzes</Link></li>
-            <li><Link to="/database">Database</Link></li>
-            <li><Link to="/auth">USERNAME/Login</Link></li>
-          </ul>
-        </nav>
-      </header>
 
       <main>
         <div className="modal-container">
@@ -61,11 +48,7 @@ const Auth = () => {
           </form>
         </div>
       </main>
-
-      <footer className="quiz-footer">
-        <p>&copy; 2024 WorldSmith LLC</p>
-        <a href="https://github.com/matthewandersonthompson/startup">GitHub Repository</a>
-      </footer>
+      
     </div>
   );
 };
