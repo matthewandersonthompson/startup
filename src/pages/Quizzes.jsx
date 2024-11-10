@@ -1,5 +1,6 @@
 // src/pages/Quizzes.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/quizzes.css';
 
 const questionsData = [
@@ -49,14 +50,25 @@ const Quizzes = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const navigate = useNavigate();
 
   const handleAnswerSelect = (isCorrect) => {
-    if (isCorrect) setScore(score + 1);
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questionsData.length) {
-      setCurrentQuestion(nextQuestion);
+    setSelectedAnswer(isCorrect);
+  };
+
+  const handleContinue = () => {
+    if (selectedAnswer !== null) {
+      if (selectedAnswer) setScore(score + 1);
+      const nextQuestion = currentQuestion + 1;
+      if (nextQuestion < questionsData.length) {
+        setCurrentQuestion(nextQuestion);
+        setSelectedAnswer(null); // Reset selected answer for the next question
+      } else {
+        setShowResults(true);
+      }
     } else {
-      setShowResults(true);
+      alert("Please select an answer before continuing.");
     }
   };
 
@@ -64,6 +76,7 @@ const Quizzes = () => {
     setCurrentQuestion(0);
     setScore(0);
     setShowResults(false);
+    setSelectedAnswer(null);
   };
 
   return (
@@ -73,6 +86,7 @@ const Quizzes = () => {
           <h3>Your Score</h3>
           <p>You scored {score} out of {questionsData.length}!</p>
           <button className="restart-btn" onClick={handleRestart}>Restart Quiz</button>
+          <button className="return-btn" onClick={() => navigate('/dashboard')}>Return to Dashboard</button>
         </div>
       ) : (
         <section id="quiz">
@@ -89,7 +103,7 @@ const Quizzes = () => {
                 <span>{answer.text}</span>
               </label>
             ))}
-            <button className="continue-btn" onClick={() => setCurrentQuestion(currentQuestion + 1)}>
+            <button className="continue-btn" onClick={handleContinue}>
               Continue
             </button>
           </div>
