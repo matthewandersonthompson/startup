@@ -63,7 +63,7 @@ const Quizzes = () => {
       const nextQuestion = currentQuestion + 1;
       if (nextQuestion < questionsData.length) {
         setCurrentQuestion(nextQuestion);
-        setSelectedAnswer(null); // Reset selected answer for the next question
+        setSelectedAnswer(null); 
       } else {
         setShowResults(true);
       }
