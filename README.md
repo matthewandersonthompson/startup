@@ -102,3 +102,18 @@ For this deliverable, I styled the application to achieve a consistent, responsi
 - **Application Elements**- Applied good contrast, spacing, and clean layout for modern visual appeal.
 - **Application Text Content**- Ensured consistent fonts, sizes, and spacing for all headings, body text, and links.
 - **Application Images**- Placeholder images in place for future visual elements, with room for styling updates as needed.
+
+
+## Startup React Deliverable
+For this deliverable, I used JavaScript and React to convert the startup application into a single-user version, setting up components, routing, and placeholders for future functionality.
+
+- **Bundling and Optimization** - Successfully bundled with Vite, ensuring efficient production-ready code.
+- **Component Structure** - Created components for each main part of the app, including:
+    - **Quizzes** - Functional quiz with scoring, question progression, and reset options.
+    - **Chatbot** - Placeholder setup for future AI interactivity.
+    - **Auth** - Basic login and signup placeholders.
+    - **Dashboard** - Static links and placeholders ready for user data.
+-  **React Router Integration** - Configured routing for smooth navigation between Home, Dashboard, Quizzes, and Chatbot pages.
+- **GitHub and Developer Info** - My name and a link to my GitHub repository are prominently displayed on the homepage as required.
+- **Styling and Layout Consistency** - Applied custom CSS to ensure cohesive styling across all components, supporting a full-screen layout.
+- **State Management with Hooks** - Used React useState hook to manage component states, including quiz score tracking and question navigation.
