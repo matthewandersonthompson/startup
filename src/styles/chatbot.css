@@ -1,12 +1,34 @@
-body {
-  font-family: 'OpenAI', sans-serif;
+/* Reset and base styling */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'OpenAI', sans-serif;
   background-color: #33343f;
   color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .content {
@@ -16,9 +38,10 @@ body {
   box-sizing: border-box;
 }
 
+/* Header and footer adjustments */
 .quiz-header, .quiz-footer {
   background-color: #5a4570;
-  padding: 20px;
+  padding: 25px; /* Increased padding for header/footer size */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,7 +50,7 @@ body {
 }
 
 .fantasy-header {
-  font-size: 2.5rem;
+  font-size: 2.8rem; /* Slightly larger font size */
   color: white;
 }
 
@@ -62,43 +85,43 @@ body {
   text-decoration: underline;
 }
 
+/* Sidebar styling */
 aside {
-  width: 20%;
+  width: 25%;
   background-color: #292a34;
-  padding: 20px;
+  padding: 25px; /* Increased padding for more space in sidebar */
   border-right: 3px solid #5a4570;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   box-sizing: border-box;
-  position: sticky;
-  top: 0;
+  min-height: 80vh; /* Make the sidebar taller */
 }
 
 aside h2 {
-  font-size: 1.5rem; /* Reduced font size */
-  margin-bottom: 15px;
-  line-height: 1.2; /* Tighter spacing */
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  line-height: 1.3;
   color: white;
 }
 
 aside label {
   font-weight: bold;
-  font-size: 1rem; /* Smaller font size */
+  font-size: 1.1rem;
   text-align: left;
   display: block;
-  margin-bottom: 5px; /* Tighter spacing */
+  margin-bottom: 10px;
 }
 
 aside select, aside textarea {
   width: 100%;
-  padding: 10px;
-  font-size: 0.9rem;
+  padding: 12px;
+  font-size: 1rem;
   background-color: #444654;
   border: none;
   color: white;
   box-sizing: border-box;
-  margin-bottom: 15px; /* Tighter spacing */
+  margin-bottom: 20px;
   text-align: left;
 }
 
@@ -110,8 +133,8 @@ aside textarea {
   background-color: #5a4570;
   border: none;
   color: white;
-  font-size: 1.1rem;
-  padding: 10px;
+  font-size: 1.2rem;
+  padding: 12px;
   cursor: pointer;
   width: 100%;
   box-sizing: border-box;
@@ -121,6 +144,7 @@ aside textarea {
   background-color: #6f5a8a;
 }
 
+/* Main content area */
 .chatbot-section {
   width: 80%;
   display: flex;
@@ -128,8 +152,9 @@ aside textarea {
   justify-content: flex-start;
   align-items: center;
   background-color: #33343f;
-  padding: 20px;
+  padding: 30px; /* Increased padding for spacing */
   box-sizing: border-box;
+  flex-grow: 1;
 }
 
 .image-wrapper {
@@ -137,11 +162,12 @@ aside textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 15px;
+  margin-top: 60px; /* Added top margin for spacing above the image */
+  margin-bottom: 25px;
 }
 
 .image-wrapper img {
-  max-width: 400px;
+  max-width: 450px; /* Slightly larger max width */
   width: 100%;
   height: auto;
   border-radius: 10px;
@@ -153,7 +179,7 @@ aside textarea {
 }
 
 .scene-title h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: white;
 }
 
@@ -161,27 +187,28 @@ aside textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 25px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .chat-input input {
-  width: 70%;
-  padding: 10px;
+  width: 75%; /* Slightly wider */
+  padding: 15px; /* Increased padding for a bigger input box */
   background-color: #444654;
   border: none;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   box-sizing: border-box;
 }
 
 .chat-input button {
-  margin-left: 10px;
-  padding: 10px 20px;
+  margin-left: 15px;
+  padding: 12px 25px; /* Increased button size */
   background-color: #5a4570;
   border: none;
   color: white;
+  font-size: 1.1rem;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -190,6 +217,7 @@ aside textarea {
   background-color: #6f5a8a;
 }
 
+/* Responsive adjustments for smaller screens */
 @media (max-width: 1200px) {
   .content {
     flex-direction: column;
