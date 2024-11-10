@@ -75,22 +75,35 @@ aside {
   top: 0;
 }
 
-aside h2, aside label, aside select, aside textarea, .start-btn {
-  margin-bottom: 20px; 
+aside h2 {
+  font-size: 1.5rem; /* Reduced font size */
+  margin-bottom: 15px;
+  line-height: 1.2; /* Tighter spacing */
+  color: white;
 }
 
-aside select, aside textarea, aside button {
-  width: 100%; 
+aside label {
+  font-weight: bold;
+  font-size: 1rem; /* Smaller font size */
+  text-align: left;
+  display: block;
+  margin-bottom: 5px; /* Tighter spacing */
+}
+
+aside select, aside textarea {
+  width: 100%;
   padding: 10px;
   font-size: 0.9rem;
   background-color: #444654;
   border: none;
   color: white;
   box-sizing: border-box;
+  margin-bottom: 15px; /* Tighter spacing */
+  text-align: left;
 }
 
 aside textarea {
-  resize: none; 
+  resize: none;
 }
 
 .start-btn {
@@ -140,7 +153,7 @@ aside textarea {
 }
 
 .scene-title h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: white;
 }
 
@@ -186,7 +199,7 @@ aside textarea {
     width: 100%;
     border-right: none;
     border-bottom: 3px solid #5a4570;
-    padding: 20px 30px; 
+    padding: 20px 30px;
   }
 
   .chatbot-section {
@@ -208,7 +221,7 @@ aside textarea {
   }
 
   aside {
-    padding: 20px 40px; 
+    padding: 20px 40px;
   }
 }
 
@@ -236,7 +249,7 @@ aside textarea {
   }
 
   aside {
-    padding: 20px 10px; 
+    padding: 20px 10px;
     border-right: none;
     border-bottom: 3px solid #5a4570;
   }
