@@ -12,6 +12,8 @@ body {
 .content {
   display: flex;
   flex: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .quiz-header, .quiz-footer {
@@ -20,6 +22,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .fantasy-header {
@@ -46,6 +50,7 @@ body {
   text-align: center;
   font-size: 0.9rem;
   margin-top: auto;
+  width: 100%;
 }
 
 .quiz-footer a {
@@ -65,6 +70,7 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  box-sizing: border-box;
   position: sticky;
   top: 0;
 }
@@ -74,14 +80,13 @@ aside h2, aside label, aside select, aside textarea, .start-btn {
 }
 
 aside select, aside textarea, aside button {
-  width: calc(100% - 40px); 
+  width: 100%; 
   padding: 10px;
   font-size: 0.9rem;
   background-color: #444654;
   border: none;
   color: white;
-  margin-left: auto;
-  margin-right: auto;
+  box-sizing: border-box;
 }
 
 aside textarea {
@@ -95,8 +100,8 @@ aside textarea {
   font-size: 1.1rem;
   padding: 10px;
   cursor: pointer;
-  display: block; 
-  margin: 0 auto; 
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .start-btn:hover {
@@ -110,7 +115,7 @@ aside textarea {
   justify-content: flex-start;
   background-color: #33343f;
   padding: 20px;
-  position: relative;
+  box-sizing: border-box;
 }
 
 .image-wrapper {
@@ -120,7 +125,8 @@ aside textarea {
 }
 
 .image-wrapper img {
-  width: 40%; 
+  width: 100%; 
+  max-width: 400px;
   height: auto;
   border-radius: 10px;
 }
@@ -140,6 +146,8 @@ aside textarea {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chat-input input {
@@ -149,6 +157,7 @@ aside textarea {
   border: none;
   color: white;
   font-size: 1.2rem;
+  box-sizing: border-box;
 }
 
 .chat-input button {
@@ -158,6 +167,7 @@ aside textarea {
   border: none;
   color: white;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .chat-input button:hover {
@@ -228,11 +238,8 @@ aside textarea {
     border-bottom: 3px solid #5a4570;
   }
 
-  
   aside select, aside textarea, aside button {
-    width: calc(100% - 60px); 
+    width: calc(100% - 20px);
     padding: 10px;
-    margin-left: 0;
-    margin-right: 0;
   }
 }
