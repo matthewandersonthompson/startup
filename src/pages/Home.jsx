@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/home.css';
-import { dmskills } from '../assets/images'; // Import the dmskills image from images.js
+import { dmskills } from '../assets/images'; 
 
 const Home = () => {
   return (
