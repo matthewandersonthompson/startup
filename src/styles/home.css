@@ -11,8 +11,6 @@ body {
 
 main {
   flex: 1;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .quiz-header, .quiz-footer {
@@ -21,8 +19,6 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .quiz-footer {
@@ -68,13 +64,13 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 .image-wrapper {
-  width: 40%;
+  width: 60%;
+  margin-right: 50px;
+  transform: translateX(-10px);
 }
 
 .image-wrapper img {
@@ -86,48 +82,54 @@ main {
   width: 50%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 .headline h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: 2.2rem !important;
+  margin-bottom: 2px !important;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .action-btn {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 15px 0;
+  width: 100%;
   background-color: #5a4570;
   color: white;
   font-size: 1.25rem;
+  text-align: center;
   text-decoration: none;
   border-radius: 10px;
   transition: background-color 0.3s ease;
+  margin-top: 20px;
 }
 
 .action-btn:hover {
-  background-color: #6f5a8a;
+  background-color: #3cb371; /* Green hover color */
 }
 
 .links-section {
-  padding: 40px;
+  padding: 20px 0;
   background-color: #292a34;
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: 10px;
+  width: 100%;
 }
 
 h3 {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 30px;
+  font-size: 2rem !important;
+  text-align: center !important;
+  margin-bottom: 5px;
+  margin-top: 10px !important;
 }
 
 .page-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%; /* Full width for container */
+  padding: 0; /* Remove padding to ensure no constraints */
 }
 
 .page-item {
@@ -137,7 +139,12 @@ h3 {
   background-color: rgba(160, 179, 176, 0.2);
   padding: 20px;
   border-radius: 10px;
+  width: 100%; /* Ensures the item spans the full container width */
+  max-width: 100%; /* Removes any width constraints */
+  margin: 0; /* Centers the item within the container */
+  box-sizing: border-box; /* Ensures padding doesn’t add to width */
 }
+
 
 .page-item a {
   font-size: 1.5rem;
@@ -148,7 +155,7 @@ h3 {
 
 .page-item p {
   font-size: 1.1rem;
-  width: 60%;
+  width: 100%;
   color: #ccc;
   text-align: right;
 }
@@ -171,28 +178,20 @@ h3 {
   .headline {
     width: 100%;
   }
-
-  .links-section {
-    padding: 30px;
-  }
 }
 
 @media (max-width: 768px) {
   .headline h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .action-btn {
     font-size: 1rem;
-    padding: 10px 20px;
+    padding: 10px 0;
   }
 
   .page-item p {
     font-size: 1rem;
-  }
-
-  .intro-section, .links-section {
-    padding: 20px;
   }
 }
 
@@ -219,11 +218,5 @@ h3 {
 
   .page-item p {
     width: 100%;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .intro-section, .links-section {
-    padding: 15px;
   }
 }
