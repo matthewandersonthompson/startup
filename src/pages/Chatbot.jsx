@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/chatbot.css';
-import { dm } from '../assets/images'; // Import the dm image from images.js
+import { dm } from '../assets/images'; 
 
 const Chatbot = () => {
   return (
