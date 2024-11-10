@@ -1,3 +1,18 @@
+/* Reset and base styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -64,5 +79,141 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+/* Global container adjustments */
+.content, .intro-section, .learning-path, main {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Image responsiveness */
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Optional, for rounded corners */
+}
+
+/* Header and footer adjustments */
+.quiz-header, .quiz-footer {
+  background-color: #5a4570;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.fantasy-header {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.tech-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.tech-menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.tech-menu li a:hover {
+  text-decoration: underline;
+}
+
+.quiz-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.quiz-footer a {
+  color: #b3a9d7;
+  text-decoration: none;
+}
+
+.quiz-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+  .intro-section, .content, .learning-path {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .quiz-header, .quiz-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fantasy-header {
+    font-size: 2rem;
+  }
+
+  .tech-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .content, .learning-path, .intro-section {
+    padding: 0 15px;
+  }
+
+  .tech-menu {
+    flex-direction: column;
+  }
+
+  .image-wrapper img {
+    max-width: 80%; /* Further reduce size on smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .quiz-header, .quiz-footer {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .fantasy-header {
+    font-size: 1.8rem;
+  }
+
+  .tech-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .intro-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .headline {
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .image-wrapper img {
+    max-width: 100%; /* Full width on very small screens */
   }
 }
