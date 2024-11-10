@@ -78,7 +78,7 @@ main {
 }
 
 .data-section {
-  padding: 20px 20px; /* Reduced padding for full width */
+  padding: 20px 20px; 
   width: 100%;
   text-align: left;
 }
@@ -100,7 +100,7 @@ h3 {
 }
 
 table {
-  width: 100%; /* Full width */
+  width: 100%; 
   margin-top: 20px;
   border-collapse: collapse;
 }
