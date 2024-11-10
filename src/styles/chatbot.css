@@ -113,6 +113,7 @@ aside textarea {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   background-color: #33343f;
   padding: 20px;
   box-sizing: border-box;
@@ -121,19 +122,21 @@ aside textarea {
 .image-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 100%;
   margin-bottom: 15px;
 }
 
 .image-wrapper img {
-  width: 100%; 
   max-width: 400px;
+  width: 100%;
   height: auto;
   border-radius: 10px;
 }
 
 .scene-title {
   text-align: center;
-  margin-top: 30px; 
+  margin-top: 30px;
 }
 
 .scene-title h2 {
