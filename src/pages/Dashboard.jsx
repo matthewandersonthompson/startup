@@ -42,12 +42,6 @@ const Dashboard = () => {
           </div>
           <div className="line-between"></div>
 
-          <div className="quiz-modal">
-            <img src={test} alt="Quiz Icon" />
-            <Link to="/quizzes">Quiz 1: DM Basics</Link>
-          </div>
-          <div className="line-between"></div>
-
           <div className="lesson">
             <img src={lesson4} alt="Lesson 4 Icon" />
             <Link to="/quizzes">4. Managing NPCs and Villains</Link>
@@ -63,12 +57,6 @@ const Dashboard = () => {
           <div className="lesson">
             <img src={lesson6} alt="Lesson 6 Icon" />
             <Link to="/quizzes">6. Combat Strategies and Encounters</Link>
-          </div>
-          <div className="line-between"></div>
-
-          <div className="quiz-modal">
-            <img src={test} alt="Quiz Icon" />
-            <Link to="/quizzes">Quiz 2: Storytelling and Combat</Link>
           </div>
           <div className="line-between"></div>
 
