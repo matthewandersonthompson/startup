@@ -115,7 +115,7 @@ button:focus-visible {
 /* Header and footer adjustments */
 .quiz-header, .quiz-footer {
   background-color: #5a4570;
-  padding: 20px;
+  padding: 40px !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
