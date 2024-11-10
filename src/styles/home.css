@@ -108,7 +108,7 @@ main {
 }
 
 .action-btn:hover {
-  background-color: #3cb371; /* Green hover color */
+  background-color: #3cb371; 
 }
 
 .links-section {
@@ -128,8 +128,8 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%; /* Full width for container */
-  padding: 0; /* Remove padding to ensure no constraints */
+  width: 100%; 
+  padding: 0; 
 }
 
 .page-item {
@@ -139,10 +139,10 @@ h3 {
   background-color: rgba(160, 179, 176, 0.2);
   padding: 20px;
   border-radius: 10px;
-  width: 100%; /* Ensures the item spans the full container width */
-  max-width: 100%; /* Removes any width constraints */
-  margin: 0; /* Centers the item within the container */
-  box-sizing: border-box; /* Ensures padding doesn’t add to width */
+  width: 100%; 
+  max-width: 100%; 
+  margin: 0; 
+  box-sizing: border-box; 
 }
 
 
