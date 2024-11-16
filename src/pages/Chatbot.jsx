@@ -1,12 +1,14 @@
-// src/pages/Chatbot.js
+// src/pages/Chatbot.jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/chatbot.css';
 import { dm } from '../assets/images';
 
 const Chatbot = () => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
+  const [scene, setScene] = useState('');
+  const [dmPrompt, setDmPrompt] = useState('');
+  const [adventureStarted, setAdventureStarted] = useState(false);
 
   // Reference to the chat history container
   const chatHistoryRef = useRef(null);
@@ -18,6 +20,37 @@ const Chatbot = () => {
     }
   }, [chatHistory]);
 
+  // Function to handle starting the adventure
+  const handleStartAdventure = async () => {
+    if (!scene && !dmPrompt.trim()) {
+      alert('Please select a scene or enter a DM prompt to start the adventure.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/chatbot/start', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ scene, dmPrompt }),
+      });
+
+      const data = await res.json();
+      const botResponse = data.reply || 'No reply received';
+
+      // Start the adventure by adding the bot's initial message
+      setChatHistory([
+        { sender: 'bot', text: botResponse },
+      ]);
+      setAdventureStarted(true);
+    } catch (error) {
+      console.error('Error starting adventure:', error);
+      alert('Error starting the adventure. Please try again.');
+    }
+  };
+
+  // Function to handle sending messages
   const handleSendMessage = async () => {
     if (!message.trim()) return;
 
@@ -62,7 +95,12 @@ const Chatbot = () => {
         <aside>
           <h2>Select a Scene to Practice</h2>
           <label htmlFor="scene">Choose a scene:</label>
-          <select id="scene" name="scene" required defaultValue="">
+          <select
+            id="scene"
+            name="scene"
+            value={scene}
+            onChange={(e) => setScene(e.target.value)}
+          >
             <option value="" disabled>
               Select a scene
             </option>
@@ -80,13 +118,17 @@ const Chatbot = () => {
             name="dmPrompt"
             rows="3"
             placeholder="Describe your scene or interact with the players..."
+            value={dmPrompt}
+            onChange={(e) => setDmPrompt(e.target.value)}
           ></textarea>
 
-          <button className="start-btn">Let's Adventure!</button>
+          <button className="start-btn" onClick={handleStartAdventure}>
+            Let's Adventure!
+          </button>
         </aside>
 
         <section className="chatbot-section">
-          {chatHistory.length === 0 ? (
+          {!adventureStarted ? (
             <>
               <div className="image-wrapper">
                 <img src={dm} alt="DM Image" />
@@ -110,19 +152,21 @@ const Chatbot = () => {
             </div>
           )}
 
-          <div className="chat-input">
-            <input
-              type="text"
-              placeholder="Enter your message..."
-              id="chatMessage"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') handleSendMessage();
-              }}
-            />
-            <button onClick={handleSendMessage}>Send</button>
-          </div>
+          {adventureStarted && (
+            <div className="chat-input">
+              <input
+                type="text"
+                placeholder="Enter your message..."
+                id="chatMessage"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') handleSendMessage();
+                }}
+              />
+              <button onClick={handleSendMessage}>Send</button>
+            </div>
+          )}
         </section>
       </div>
     </div>
