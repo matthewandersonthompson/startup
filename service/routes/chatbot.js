@@ -1,14 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-// Placeholder for Chatbot Route
+// Chatbot Route
 router.post('/', async (req, res) => {
-  const { message } = req.body;
+  try {
+    const { message } = req.body;
 
-  // Simulate chatbot response
-  const response = { reply: `You said: ${message}` };
+    if (!message) {
+      return res.status(400).json({ error: 'Message is required' });
+    }
 
-  res.json(response);
+    // Simulate chatbot response
+    const response = { reply: `You said: ${message}` };
+
+    res.json(response);
+  } catch (error) {
+    console.error('Error in chatbot route:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 module.exports = router;
