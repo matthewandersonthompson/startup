@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 
     // Use the cheaper model (gpt-3.5-turbo)
     const completion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo', // Specify the cheaper model
+      model: 'gpt-4o', // Specify the cheaper model
       messages: [{ role: 'user', content: message }],
       max_tokens: 50, // Limit tokens to control costs
     });
