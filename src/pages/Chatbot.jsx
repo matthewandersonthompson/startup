@@ -9,6 +9,7 @@ const Chatbot = () => {
   const [scene, setScene] = useState('');
   const [dmPrompt, setDmPrompt] = useState('');
   const [adventureStarted, setAdventureStarted] = useState(false);
+  const [sessionId, setSessionId] = useState(null);
 
   // Reference to the chat history container
   const chatHistoryRef = useRef(null);
@@ -37,13 +38,17 @@ const Chatbot = () => {
       });
 
       const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
       const botResponse = data.reply || 'No reply received';
 
       // Start the adventure by adding the bot's initial message
-      setChatHistory([
-        { sender: 'bot', text: botResponse },
-      ]);
+      setChatHistory([{ sender: 'bot', text: botResponse }]);
       setAdventureStarted(true);
+      setSessionId(data.sessionId); // Store sessionId
     } catch (error) {
       console.error('Error starting adventure:', error);
       alert('Error starting the adventure. Please try again.');
@@ -55,10 +60,7 @@ const Chatbot = () => {
     if (!message.trim()) return;
 
     // Add user's message to chat history
-    setChatHistory((prevChat) => [
-      ...prevChat,
-      { sender: 'user', text: message },
-    ]);
+    setChatHistory((prevChat) => [...prevChat, { sender: 'user', text: message }]);
 
     try {
       const res = await fetch('/api/chatbot', {
@@ -66,17 +68,19 @@ const Chatbot = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, sessionId }), // Include sessionId
       });
 
       const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
       const botResponse = data.reply || 'No reply received';
 
       // Add bot's response to chat history
-      setChatHistory((prevChat) => [
-        ...prevChat,
-        { sender: 'bot', text: botResponse },
-      ]);
+      setChatHistory((prevChat) => [...prevChat, { sender: 'bot', text: botResponse }]);
     } catch (error) {
       console.error('Error sending message:', error);
       setChatHistory((prevChat) => [
