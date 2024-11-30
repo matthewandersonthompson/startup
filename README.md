@@ -117,3 +117,20 @@ For this deliverable, I used JavaScript and React to convert the startup applica
 - **GitHub and Developer Info** - My name and a link to my GitHub repository are prominently displayed on the homepage as required.
 - **Styling and Layout Consistency** - Applied custom CSS to ensure cohesive styling across all components, supporting a full-screen layout.
 - **State Management with Hooks** - Used React useState hook to manage component states, including quiz score tracking and question navigation.
+
+
+## Startup Service Deliverable
+For this deliverable, I added backend functionality to the DM Training Grounds application using Node.js and Express.js. This includes serving the frontend, creating API endpoints, and integrating third-party services to enhance the user experience.
+
+- **Backend APIs**: Added custom endpoints to manage interactions with the AI-powered chatbot:
+  - **`/api/chatbot/start`** - Initializes a new chatbot session, creating a scenario for Dungeon Master training.
+  - **`/api/chatbot`** - Handles real-time communication between the DM and AI-simulated players.
+  - **`/example`** - Demonstrates MongoDB integration with simple insert and query operations.
+- **Third-Party API Integration**: Integrated OpenAI’s GPT-3.5 API to simulate realistic player interactions in the chatbot feature, providing unique responses to DM inputs during training sessions.
+- **Static Middleware**: Configured Express.js to serve the frontend using static middleware, ensuring the application is production-ready and accessible.
+- **Development Tools**: 
+  - Configured a proxy in `vite.config.js` to forward API requests during development, simplifying backend debugging.
+  - Used browser developer tools and the Node.js debugger in VS Code to ensure functionality across frontend and backend.
+- **Deployment**: Successfully deployed the full-stack application to AWS using the provided `deployService.sh` script. The application is live and accessible at [https://startup.dmtraininggrounds.com](https://startup.dmtraininggrounds.com).
+
+- **Summary**: Overall this deliverable adds essential backend functionality to support the DM Training Grounds' core features while maintaining a clean and scalable architecture.
