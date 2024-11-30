@@ -163,17 +163,18 @@ aside textarea {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+  text-align: center !important;
   width: 100%;
   height: auto;
   margin: 20px 0;
-  position: relative; /* Ensures no conflicting absolute positioning */
+  flex-direction: column; /* Ensures the content stacks vertically */
 }
 
 .image-wrapper img {
-  max-width: 100%; /* Ensures the image doesn’t overflow */
-  max-height: 100%; /* Ensures the image scales proportionally */
-  display: block !important; /* Ensures the image behaves like a block element */
-  margin: 0 auto; /* Centering fallback for block display */
+  max-width: 100%;
+  height: auto; /* Ensures aspect ratio is maintained */
+  display: block !important; /* Forces the image to behave like a block */
+  margin: 0 auto; /* Centers the image horizontally */
 }
 
 .scene-title {
