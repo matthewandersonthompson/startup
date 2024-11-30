@@ -161,11 +161,12 @@ aside textarea {
 
 .image-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center !important;
+  align-items: center !important;
   width: 100%;
+  height: auto; /* Ensures it doesn't stretch vertically */
   margin-top: 60px;
-  margin-bottom: 25px;
+  margin: 20px 0;
 }
 
 .image-wrapper img {
@@ -176,13 +177,19 @@ aside textarea {
 }
 
 .scene-title {
-  text-align: center;
-  margin-top: 30px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  flex-direction: column; /* Ensures the text stacks correctly */
+  margin: 20px 0;
+  width: 100%;
 }
 
 .scene-title h2 {
   font-size: 2.2rem;
   color: white;
+  margin: 0 auto;
 }
 
 /* Chat History Container */
