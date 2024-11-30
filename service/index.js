@@ -1,11 +1,9 @@
 const express = require('express');
 const path = require('path');
-const app = express();
-
-// Load environment variables from .env file
+const { connectToCollection } = require('./utils/database');
 require('dotenv').config();
 
-// Port configuration
+const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // Middleware for JSON parsing
@@ -27,8 +25,8 @@ const openai = new OpenAI({
 });
 
 // In-memory storage for sessions and logs
-const sessions = {}; // Stores conversation history keyed by session ID
-const logs = []; // Stores data for each session (scene, dmPrompt, sessionId, etc.)
+const sessions = {};
+const logs = [];
 
 // GET Route for /api/chatbot to display session logs
 apiRouter.get('/chatbot', (req, res) => {
@@ -39,17 +37,12 @@ apiRouter.get('/chatbot', (req, res) => {
 apiRouter.post('/chatbot/start', async (req, res) => {
   const { scene, dmPrompt } = req.body;
 
-  const sessionId = Date.now().toString(); // Generate a unique session ID
+  const sessionId = Date.now().toString();
+  let systemPrompt = `You are roleplaying as a Dungeons & Dragons player character. Your goal is to interact with the Dungeon Master (DM)...`;
 
-  let systemPrompt = `You are roleplaying as a Dungeons & Dragons player character. Your goal is to interact with the Dungeon Master (DM) by making decisions, asking questions, and performing actions as your character. Never break character or respond as a chatbot, ONLY speak in character. They are the DM you are the player, so never tell them what to do. Just state what you do. If they ask you to make a roll of any type, just respond with the number nothing else.`;
-
-  if (scene) {
-    systemPrompt += ` The scene is a ${scene.replace('-', ' ')}.`;
-  }
-  if (dmPrompt) {
-    systemPrompt += ` ${dmPrompt}`;
-  }
-  systemPrompt += ` Introduce yourself by stating your name, race, class, and level. Then wait for the Dungeon Master to continue. Remember to stay in character and respond appropriately to the DM's descriptions and challenges.`;
+  if (scene) systemPrompt += ` The scene is a ${scene.replace('-', ' ')}.`;
+  if (dmPrompt) systemPrompt += ` ${dmPrompt}`;
+  systemPrompt += ` Introduce yourself by stating your name, race, class, and level...`;
 
   const conversation = [{ role: 'system', content: systemPrompt }];
 
@@ -60,11 +53,10 @@ apiRouter.post('/chatbot/start', async (req, res) => {
     });
 
     const reply = completion.choices[0].message.content.trim();
-    conversation.push({ role: 'assistant', content: reply }); // Save assistant's reply
+    conversation.push({ role: 'assistant', content: reply });
 
-    sessions[sessionId] = conversation; // Store conversation in memory
+    sessions[sessionId] = conversation;
 
-    // Log the session details
     logs.push({
       sessionId,
       scene: scene || 'N/A',
@@ -91,8 +83,8 @@ apiRouter.post('/chatbot', async (req, res) => {
     return res.status(400).json({ error: 'Invalid session or message.' });
   }
 
-  const conversation = sessions[sessionId]; // Retrieve conversation history
-  conversation.push({ role: 'user', content: message }); // Add user's message
+  const conversation = sessions[sessionId];
+  conversation.push({ role: 'user', content: message });
 
   try {
     const completion = await openai.chat.completions.create({
@@ -101,9 +93,8 @@ apiRouter.post('/chatbot', async (req, res) => {
     });
 
     const reply = completion.choices[0].message.content.trim();
-    conversation.push({ role: 'assistant', content: reply }); // Save assistant's reply
+    conversation.push({ role: 'assistant', content: reply });
 
-    // Update logs with the latest reply
     const log = logs.find((log) => log.sessionId === sessionId);
     if (log) {
       log.latestMessage = message;
@@ -117,6 +108,24 @@ apiRouter.post('/chatbot', async (req, res) => {
       error.response ? error.response.data : error.message
     );
     res.status(500).json({ error: 'Error communicating with the chatbot service.' });
+  }
+});
+
+// Example MongoDB integration
+app.get('/example', async (req, res) => {
+  try {
+    const collection = await connectToCollection('exampleCollection');
+
+    // Insert a test document
+    const testDoc = { name: 'Refactored Data', value: 99 };
+    const result = await collection.insertOne(testDoc);
+
+    // Query the collection
+    const docs = await collection.find({}).toArray();
+
+    res.json({ insertedId: result.insertedId, documents: docs });
+  } catch (err) {
+    res.status(500).send('Error: ' + err.message);
   }
 });
 

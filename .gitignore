@@ -1,4 +1,4 @@
-# Logs
+#logs
 logs
 *.log
 npm-debug.log*
@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 
-# Editor directories and files
+#editor stuff
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Environment variables
+#env vars
 .env
+
+#Mongodb
+echo "service/dbConfig.json" >> ../.gitignore
