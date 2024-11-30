@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,7 +37,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Header and Footer */
 .quiz-header,
 .quiz-footer {
   background-color: #5a4570;
@@ -86,7 +84,6 @@ body {
   text-decoration: underline;
 }
 
-/* Sidebar */
 aside {
   width: 25%;
   background-color: #292a34;
@@ -140,19 +137,19 @@ aside textarea {
   cursor: pointer;
   width: 100%;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .start-btn:hover {
   background-color: #6f5a8a;
 }
 
-/* Chatbot Section */
 .chatbot-section {
   width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: stretch;
+  align-items: center; 
   background-color: #33343f;
   padding: 30px;
   box-sizing: border-box;
@@ -160,31 +157,32 @@ aside textarea {
 }
 
 .image-wrapper {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
   width: 100%;
-  height: auto;
   margin: 20px 0;
-  flex-direction: column; /* Ensures the content stacks vertically */
+  text-align: center;
 }
 
 .image-wrapper img {
-  max-width: 100%;
-  height: auto; /* Ensures aspect ratio is maintained */
-  display: block !important; /* Forces the image to behave like a block */
-  margin: 0 auto; /* Centers the image horizontally */
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
 }
 
 .scene-title {
   display: flex;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  flex-direction: column; /* Ensures the text stacks correctly */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
   margin: 20px 0;
   width: 100%;
+  text-align: center;
 }
 
 .scene-title h2 {
@@ -193,7 +191,6 @@ aside textarea {
   margin: 0 auto;
 }
 
-/* Chat History Container */
 .chat-history {
   width: 100%;
   flex-grow: 1;
@@ -201,9 +198,10 @@ aside textarea {
   padding: 20px;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  background-color: #2f2f3a;
+  border-radius: 10px;
 }
 
-/* Chat Messages */
 .chat-message {
   margin-bottom: 15px;
   max-width: 70%;
@@ -230,7 +228,6 @@ aside textarea {
   margin: 0;
 }
 
-/* Chat Input */
 .chat-input {
   display: flex;
   justify-content: center;
@@ -248,6 +245,12 @@ aside textarea {
   color: white;
   font-size: 1.3rem;
   box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.chat-input input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #6f5a8a;
 }
 
 .chat-input button {
@@ -259,13 +262,13 @@ aside textarea {
   font-size: 1.1rem;
   cursor: pointer;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .chat-input button:hover {
   background-color: #6f5a8a;
 }
 
-/* Media Queries */
 @media (max-width: 1200px) {
   .content {
     flex-direction: column;
@@ -336,5 +339,18 @@ aside textarea {
   aside button {
     width: calc(100% - 20px);
     padding: 10px;
+  }
+
+  .chatbot-section {
+    padding: 20px;
+  }
+
+  .image-wrapper {
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+
+  .scene-title h2 {
+    font-size: 1.8rem;
   }
 }
