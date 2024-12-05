@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../styles/auth.css';
 
 const Auth = ({ onAuthChange }) => {
+  const [isSignUp, setIsSignUp] = useState(true); // State to toggle between sign up and login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -32,87 +33,114 @@ const Auth = ({ onAuthChange }) => {
   return (
     <div>
       <main>
-        <div className="modal-container">
-          <div className="modal-header">
-            <h1>Sign Up for Free</h1>
+        {isSignUp ? (
+          <div className="modal-container">
+            <div className="modal-header">
+              <h1>Sign Up for Free</h1>
+            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleAuth('/api/auth/create');
+              }}
+            >
+              <div className="modal-field">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  autoComplete="off"
+                />
+              </div>
+              <div className="modal-field">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="off"
+                />
+              </div>
+              <button type="submit" className="modal-button">Get Started</button>
+              <div className="modal-footer">
+                <p>
+                  Already have an account?{' '}
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsSignUp(false);
+                      setEmail('');
+                      setPassword('');
+                    }}
+                  >
+                    Log in here
+                  </a>
+                </p>
+              </div>
+            </form>
           </div>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleAuth('/api/auth/create');
-            }}
-          >
-            <div className="modal-field">
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="off"
-              />
+        ) : (
+          <div className="modal-container">
+            <div className="modal-header">
+              <h1>Welcome Back!</h1>
             </div>
-            <div className="modal-field">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                autoComplete="off"
-              />
-            </div>
-            <button type="submit" className="modal-button">Get Started</button>
-            <div className="modal-footer">
-              <p>
-                Already have an account? <Link to="#">Log in here</Link>
-              </p>
-            </div>
-          </form>
-        </div>
-
-        <div className="modal-container">
-          <div className="modal-header">
-            <h1>Welcome Back!</h1>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleAuth('/api/auth/login');
+              }}
+            >
+              <div className="modal-field">
+                <label htmlFor="login-email">Email Address</label>
+                <input
+                  type="email"
+                  id="login-email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  autoComplete="off"
+                />
+              </div>
+              <div className="modal-field">
+                <label htmlFor="login-password">Password</label>
+                <input
+                  type="password"
+                  id="login-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="off"
+                />
+              </div>
+              <button type="submit" className="modal-button">Log In</button>
+              <div className="modal-footer">
+                <p>
+                  Don't have an account?{' '}
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsSignUp(true);
+                      setEmail('');
+                      setPassword('');
+                    }}
+                  >
+                    Sign up here
+                  </a>
+                </p>
+                <p className="forgot">
+                  <Link to="#">Forgot Password?</Link>
+                </p>
+              </div>
+            </form>
           </div>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleAuth('/api/auth/login');
-            }}
-          >
-            <div className="modal-field">
-              <label htmlFor="login-email">Email Address</label>
-              <input
-                type="email"
-                id="login-email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="off"
-              />
-            </div>
-            <div className="modal-field">
-              <label htmlFor="login-password">Password</label>
-              <input
-                type="password"
-                id="login-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                autoComplete="off"
-              />
-            </div>
-            <button type="submit" className="modal-button">Log In</button>
-            <div className="modal-footer">
-              <p className="forgot">
-                <Link to="#">Forgot Password?</Link>
-              </p>
-            </div>
-          </form>
-        </div>
+        )}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </main>
     </div>
