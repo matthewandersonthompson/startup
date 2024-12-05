@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import './login.css';
+import './auth.css';
 
 export function Authenticated({ userName, onLogout }) {
   const navigate = useNavigate();

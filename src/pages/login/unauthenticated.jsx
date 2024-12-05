@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { MessageDialog } from './messageDialog';
-import './login.css';
+import './auth.css';
 
 export function Unauthenticated({ onLogin }) {
   const [userName, setUserName] = useState('');
