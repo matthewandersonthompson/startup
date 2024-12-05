@@ -3,9 +3,8 @@ const path = require('path');
 const { connectToCollection } = require('./utils/database');
 require('dotenv').config();
 const databaseRoutes = require('./routes/database');
-app.use('/api/database', databaseRoutes);
 
-const app = express();
+const app = express(); // Define app before using it
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // Middleware for JSON parsing
@@ -13,6 +12,9 @@ app.use(express.json());
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Register database routes
+app.use('/api/database', databaseRoutes);
 
 // API Router
 const apiRouter = express.Router();
