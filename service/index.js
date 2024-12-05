@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const { connectToCollection } = require('./utils/database');
 require('dotenv').config();
+const databaseRoutes = require('./routes/database');
+app.use('/api/database', databaseRoutes);
 
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
