@@ -1,12 +1,20 @@
-// src/pages/Database.js
-import React from 'react';
-import { Link } from 'react-router-dom';
+// src/pages/Database.jsx
+import React, { useEffect, useState } from 'react';
 import '../styles/database.css';
 
 const Database = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Fetch user login data from the server
+    fetch('/api/database/users')
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch((err) => console.error('Error fetching users:', err));
+  }, []);
+
   return (
     <div>
-
       <div className="disclaimer-modal">
         <p>This Page Would NOT Be User Facing. Only Displayed for Assignment Purposes.</p>
       </div>
@@ -16,6 +24,7 @@ const Database = () => {
           <h2>Database Data</h2>
           <p>Data is retrieved from a 3rd party database service (e.g., Firebase, MongoDB, or AWS)</p>
 
+          {/* Existing Player Data Table */}
           <h3>Player Data from External Service</h3>
           <table>
             <thead>
@@ -39,6 +48,7 @@ const Database = () => {
             </tbody>
           </table>
 
+          {/* Existing Game Session Logs Table */}
           <h3>Game Session Logs</h3>
           <table>
             <thead>
@@ -62,6 +72,7 @@ const Database = () => {
             </tbody>
           </table>
 
+          {/* Existing Quiz Results Table */}
           <h3>Quiz Results</h3>
           <table>
             <thead>
@@ -86,6 +97,7 @@ const Database = () => {
             </tbody>
           </table>
 
+          {/* Existing Quiz Questions Table */}
           <h3>Quiz Questions</h3>
           <table>
             <thead>
@@ -109,9 +121,29 @@ const Database = () => {
               <tr><td>Quiz 2</td><td>1</td><td>How many classes are there in the game?</td></tr>
             </tbody>
           </table>
+
+          {/* New User Login Info Table */}
+          <h3>User Login Information</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={index}>
+                  <td>{user.email}</td>
+                  <td>
+                    <button>View</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
       </main>
-
     </div>
   );
 };
