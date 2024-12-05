@@ -1,7 +1,7 @@
 // src/pages/login/Authenticated.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Button from 'react-bootstrap/Button';
 import './login.css';
 
 export function Authenticated({ userName, onLogout }) {
@@ -9,9 +9,9 @@ export function Authenticated({ userName, onLogout }) {
 
   return (
     <div className="authenticated-container">
-      <div className="player-name">{userName}</div>
-      <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
-      <button onClick={onLogout}>Logout</button>
+      <div className="playerName">{userName}</div>
+      <Button variant="primary" onClick={() => navigate('/dashboard')}>Dashboard</Button>
+      <Button variant="secondary" onClick={onLogout}>Logout</Button>
     </div>
   );
 }
