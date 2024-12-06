@@ -1,6 +1,6 @@
 // /Users/matthew/Desktop/cs260/startupv3/src/pages/Auth.jsx
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/auth.css';
 
 const Auth = ({ onAuthChange }) => {
@@ -10,7 +10,17 @@ const Auth = ({ onAuthChange }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showLoggedInModal, setShowLoggedInModal] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is already logged in
+    const storedUser = localStorage.getItem('userName');
+    if (storedUser) {
+      // Show a modal offering logout or going to dashboard
+      setShowLoggedInModal(true);
+    }
+  }, []);
 
   async function handleAuth(endpoint) {
     try {
@@ -45,10 +55,47 @@ const Auth = ({ onAuthChange }) => {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('userName');
+    onAuthChange('', 'unauthenticated');
+    setShowLoggedInModal(false);
+    // Clear fields and reset forms
+    setEmail('');
+    setPassword('');
+    setIsSignUp(true);
+    setErrorMessage('');
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <main style={{ flex: '1' }}>
-        {!showModal && (
+        {/* If user is already logged in, show logged-in modal instead of sign-up/login forms */}
+        {showLoggedInModal && !showModal && (
+          <div className="success-modal">
+            <div className="success-content">
+              <h2>You are already logged in!</h2>
+              <p>It seems you’re already logged in as <strong>{localStorage.getItem('userName')}</strong>.</p>
+              <button
+                onClick={handleLogout}
+                className="modal-button"
+                style={{ marginBottom: '10px' }}
+              >
+                Log Out
+              </button>
+              <button
+                onClick={() => {
+                  window.location.href = 'https://startup.dmtraininggrounds.com/dashboard';
+                }}
+                className="modal-button"
+              >
+                Go to Dashboard
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* If not showing logged-in modal or success modal, show sign-up/login */}
+        {!showLoggedInModal && !showModal && (
           <>
             {isSignUp ? (
               <div className="modal-container">
@@ -153,21 +200,17 @@ const Auth = ({ onAuthChange }) => {
                         Sign up here
                       </a>
                     </p>
-                    <p className="forgot">
-                      <Link to="#">Forgot Password?</Link>
-                    </p>
                   </div>
                 </form>
               </div>
             )}
           </>
         )}
+
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </main>
 
-      {/* Your footer can go here if you have one */}
-      {/* <footer className="quiz-footer">Footer Content</footer> */}
-
+      {/* Success Modal for sign-up/login */}
       {showModal && (
         <div className="success-modal">
           <div className="success-content">
