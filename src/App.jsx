@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Dashboard from './pages/Dashboard.jsx';
@@ -10,6 +10,24 @@ import Quizzes from './pages/Quizzes.jsx';
 import './App.css';
 
 function App() {
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
+  const [authStatus, setAuthStatus] = useState(userName ? 'authenticated' : 'unauthenticated');
+
+  // Callback passed down to Auth to update the parent state
+  function onAuthChange(newUserName, status) {
+    setUserName(newUserName);
+    setAuthStatus(status);
+  }
+
+  // If there's a userName in localStorage, ensure our state matches
+  useEffect(() => {
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      setUserName(storedUserName);
+      setAuthStatus('authenticated');
+    }
+  }, []);
+
   return (
     <Router>
       <div>
@@ -22,7 +40,8 @@ function App() {
               <li><Link to="/chatbot">Chatbot</Link></li>
               <li><Link to="/quizzes">Quizzes</Link></li>
               <li><Link to="/database">Database</Link></li>
-              <li><Link to="/auth">USERNAME/Login</Link></li>
+              {/* Conditionally render userName or "Login" based on authStatus */}
+              <li><Link to="/auth">{authStatus === 'authenticated' ? userName : "Login"}</Link></li>
             </ul>
           </nav>
         </header>
@@ -31,7 +50,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/chatbot" element={<Chatbot />} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/auth" element={<Auth onAuthChange={onAuthChange} />} />
           <Route path="/database" element={<Database />} />
           <Route path="/quizzes" element={<Quizzes />} /> 
         </Routes>
