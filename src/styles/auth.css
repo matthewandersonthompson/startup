@@ -14,9 +14,34 @@ main {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* Notice: no align-items: center; here, so the footer can stay at the bottom */
   padding: 20px;
   box-sizing: border-box;
+}
+
+/* Success modal overlay */
+.success-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(19, 35, 47, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Ensures it appears above other elements */
+}
+
+.success-content {
+  background-color: #444654;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 8px 20px 8px rgba(19, 35, 47, 0.4);
+  text-align: center;
 }
 
 .quiz-header, .quiz-footer {
@@ -239,6 +264,18 @@ h3 {
   text-decoration: underline;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.modal-body {
+  text-align: center;
+  font-size: 1.1em;
+}
+
+/* Responsive adjustments */
 @media (max-width: 1200px) {
   .intro-section {
     flex-direction: column;
@@ -320,23 +357,4 @@ h3 {
   .modal-button {
     font-size: 0.9rem;
   }
-}
-/* Authenticated user styles */
-.playerName {
-  color: rgb(118, 190, 210);
-  font-size: 1.5em;
-  padding: 0.5em;
-}
-
-/* Error message styles */
-.error-message {
-  color: red;
-  font-size: 0.9em;
-  text-align: center;
-}
-
-/* Modal dialog styles for login messages */
-.modal-body {
-  text-align: center;
-  font-size: 1.1em;
 }
