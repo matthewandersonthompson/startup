@@ -21,33 +21,6 @@ const Database = () => {
 
       <main>
         <section className="data-section">
-          <h2>Database Data</h2>
-          <p>Data is retrieved from a 3rd party database service (e.g., Firebase, MongoDB, or AWS)</p>
-
-          {/* Existing Player Data Table */}
-          <h3>Player Data from External Service</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Quizzes Completed</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>User 1</td><td>5</td><td>85%</td></tr>
-              <tr><td>User 2</td><td>3</td><td>90%</td></tr>
-              <tr><td>User 3</td><td>10</td><td>75%</td></tr>
-              <tr><td>User 4</td><td>8</td><td>92%</td></tr>
-              <tr><td>User 5</td><td>6</td><td>88%</td></tr>
-              <tr><td>User 6</td><td>4</td><td>81%</td></tr>
-              <tr><td>User 7</td><td>7</td><td>79%</td></tr>
-              <tr><td>User 8</td><td>9</td><td>94%</td></tr>
-              <tr><td>User 9</td><td>2</td><td>85%</td></tr>
-              <tr><td>User 10</td><td>3</td><td>80%</td></tr>
-            </tbody>
-          </table>
-
           {/* Existing Game Session Logs Table */}
           <h3>Game Session Logs</h3>
           <table>
@@ -94,31 +67,6 @@ const Database = () => {
               <tr><td>Quiz 8: Encounters</td><td>User 8</td><td>94%</td><td>10/19/2024</td></tr>
               <tr><td>Quiz 9: Dungeon Design</td><td>User 9</td><td>85%</td><td>10/20/2024</td></tr>
               <tr><td>Quiz 10: Boss Fights</td><td>User 10</td><td>80%</td><td>10/21/2024</td></tr>
-            </tbody>
-          </table>
-
-          {/* Existing Quiz Questions Table */}
-          <h3>Quiz Questions</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Quiz Name</th>
-                <th>Question Number</th>
-                <th>Question</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Quiz 1</td><td>1</td><td>What is the base AC for an unarmored character?</td></tr>
-              <tr><td>Quiz 1</td><td>2</td><td>What is the maximum level for a character?</td></tr>
-              <tr><td>Quiz 1</td><td>3</td><td>What is the starting gold for a level 1 character?</td></tr>
-              <tr><td>Quiz 1</td><td>4</td><td>What is the standard walking speed of a human?</td></tr>
-              <tr><td>Quiz 1</td><td>5</td><td>What roll determines an attack's success?</td></tr>
-              <tr><td>Quiz 1</td><td>6</td><td>What is a natural 20?</td></tr>
-              <tr><td>Quiz 1</td><td>7</td><td>How many dice are used for a fireball spell?</td></tr>
-              <tr><td>Quiz 1</td><td>8</td><td>What modifier affects initiative rolls?</td></tr>
-              <tr><td>Quiz 1</td><td>9</td><td>What is the maximum spell level?</td></tr>
-              <tr><td>Quiz 1</td><td>10</td><td>What are hit dice used for?</td></tr>
-              <tr><td>Quiz 2</td><td>1</td><td>How many classes are there in the game?</td></tr>
             </tbody>
           </table>
 
