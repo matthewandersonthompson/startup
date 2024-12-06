@@ -1,4 +1,4 @@
-// src/components/RequireAuth.jsx
+// /Users/matthew/Desktop/cs260/startupv3/src/components/RequireAuth.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ const RequireAuth = ({ children }) => {
     navigate('/auth'); // Redirect to login page
   };
 
-  if (showLoginModal) {
+  if (showLoginModal && !isAuthenticated) {
     return (
       <div className="success-modal">
         <div className="success-content">
