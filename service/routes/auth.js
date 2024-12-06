@@ -29,7 +29,8 @@ router.post('/create', async (req, res) => {
     await collection.insertOne({ email, password: hashedPassword });
     console.log('[DEBUG] User created successfully:', email);
 
-    res.status(201).json({ msg: 'User created successfully.' });
+    // Return userName so that the front-end can properly set it
+    res.status(201).json({ msg: 'User created successfully.', userName: email });
   } catch (err) {
     console.error('[DEBUG] Error creating user:', err.message);
     res.status(500).json({ msg: 'Error creating user.' });
