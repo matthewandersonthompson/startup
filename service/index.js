@@ -1,10 +1,12 @@
+// /Users/matthew/Desktop/cs260/startupv3/service/index.js
 const express = require('express');
 const path = require('path');
 const { connectToCollection } = require('./utils/database');
 require('dotenv').config();
 const databaseRoutes = require('./routes/database');
+const authRoutes = require('./routes/auth'); // Add this line
 
-const app = express(); // Define app before using it
+const app = express(); 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // Middleware for JSON parsing
@@ -16,6 +18,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Register database routes
 app.use('/api/database', databaseRoutes);
 
+// Register auth routes
+app.use('/api/auth', authRoutes); // Add this line
+
 // API Router
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
@@ -25,7 +30,7 @@ const OpenAI = require('openai');
 
 // Configure OpenAI API
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // Your OpenAI API key from .env
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 // In-memory storage for sessions and logs
@@ -42,8 +47,8 @@ apiRouter.post('/chatbot/start', async (req, res) => {
   const { scene, dmPrompt } = req.body;
 
   const sessionId = Date.now().toString();
-  let systemPrompt = `You are roleplaying as a Dungeons & Dragons player character. Your goal is to interact with the Dungeon Master (DM)...`;
-
+  let systemPrompt = `You are roleplaying as a Dungeons & Dragons player character...`;
+  
   if (scene) systemPrompt += ` The scene is a ${scene.replace('-', ' ')}.`;
   if (dmPrompt) systemPrompt += ` ${dmPrompt}`;
   systemPrompt += ` Introduce yourself by stating your name, race, class, and level...`;
