@@ -170,5 +170,6 @@ app.get('*', (req, res) => {
 
 // Start the server
 httpServer.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`HTTP Server running on port ${port}`);
+  console.log(`WebSocket Server running on port ${port}`);
 });
