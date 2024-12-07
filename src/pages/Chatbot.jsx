@@ -1,7 +1,19 @@
-// src/pages/Chatbot.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/chatbot.css';
 import { dm } from '../assets/images';
+
+const thinkingMessages = [
+  "Your player is thinking...",
+  "Your player might have been stumped... oh wait!",
+  "The dice are rolling in their mind...",
+  "Your player is consulting the sacred rulebook...",
+  "Your player just asked their patron for advice...",
+  "A critical hit of indecision has occurred!",
+  "Your player’s brain cast *Detect Thoughts* on itself.",
+  "The bard is composing their response in rhyme...",
+  "Your player failed their Wisdom save... thinking harder!",
+  "Your player is plotting something truly chaotic!",
+];
 
 const Chatbot = () => {
   const [message, setMessage] = useState('');
@@ -10,9 +22,11 @@ const Chatbot = () => {
   const [dmPrompt, setDmPrompt] = useState('');
   const [adventureStarted, setAdventureStarted] = useState(false);
   const [sessionId, setSessionId] = useState(null);
+  const [isThinking, setIsThinking] = useState(false);
+  const [thinkingMessage, setThinkingMessage] = useState(thinkingMessages[0]);
 
-  // Reference to the chat history container
-  const chatHistoryRef = useRef(null);
+  const ws = useRef(null); // WebSocket reference
+  const chatHistoryRef = useRef(null); // Reference to the chat history container
 
   // Auto-scroll to the bottom whenever chatHistory updates
   useEffect(() => {
@@ -21,7 +35,56 @@ const Chatbot = () => {
     }
   }, [chatHistory]);
 
-  // Function to handle starting the adventure
+  // Cycle through thinking messages
+  useEffect(() => {
+    let interval;
+    if (isThinking) {
+      interval = setInterval(() => {
+        setThinkingMessage((prev) => {
+          const currentIndex = thinkingMessages.indexOf(prev);
+          return thinkingMessages[(currentIndex + 1) % thinkingMessages.length];
+        });
+      }, 2000);
+    }
+    return () => clearInterval(interval);
+  }, [isThinking]);
+
+  // Initialize WebSocket connection
+  useEffect(() => {
+    if (adventureStarted) {
+      ws.current = new WebSocket('wss://startup.dmtraininggrounds.com');
+
+      ws.current.onopen = () => {
+        console.log('WebSocket connected');
+        if (sessionId) {
+          ws.current.send(JSON.stringify({ type: 'start', sessionId }));
+        }
+      };
+
+      ws.current.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.type === 'reply') {
+          setIsThinking(false);
+          setChatHistory((prevChat) => [
+            ...prevChat,
+            { sender: 'bot', text: data.message },
+          ]);
+        } else if (data.type === 'thinking') {
+          setIsThinking(true);
+        }
+      };
+
+      ws.current.onclose = () => console.log('WebSocket disconnected');
+      ws.current.onerror = (error) => console.error('WebSocket error:', error);
+
+      return () => {
+        if (ws.current) ws.current.close();
+      };
+    }
+  }, [adventureStarted, sessionId]);
+
+  // Handle starting the adventure
   const handleStartAdventure = async () => {
     if (!scene && !dmPrompt.trim()) {
       alert('Please select a scene or enter a DM prompt to start the adventure.');
@@ -45,52 +108,28 @@ const Chatbot = () => {
 
       const botResponse = data.reply || 'No reply received';
 
-      // Start the adventure by adding the bot's initial message
       setChatHistory([{ sender: 'bot', text: botResponse }]);
       setAdventureStarted(true);
-      setSessionId(data.sessionId); // Store sessionId
+      setSessionId(data.sessionId);
     } catch (error) {
       console.error('Error starting adventure:', error);
       alert('Error starting the adventure. Please try again.');
     }
   };
 
-  // Function to handle sending messages
-  const handleSendMessage = async () => {
+  // Handle sending messages
+  const handleSendMessage = () => {
     if (!message.trim()) return;
 
-    // Add user's message to chat history
     setChatHistory((prevChat) => [...prevChat, { sender: 'user', text: message }]);
-
-    try {
-      const res = await fetch('/api/chatbot', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message, sessionId }), // Include sessionId
-      });
-
-      const data = await res.json();
-
-      if (data.error) {
-        throw new Error(data.error);
-      }
-
-      const botResponse = data.reply || 'No reply received';
-
-      // Add bot's response to chat history
-      setChatHistory((prevChat) => [...prevChat, { sender: 'bot', text: botResponse }]);
-    } catch (error) {
-      console.error('Error sending message:', error);
-      setChatHistory((prevChat) => [
-        ...prevChat,
-        { sender: 'bot', text: 'Error connecting to the chatbot.' },
-      ]);
-    }
-
-    // Clear the message input
     setMessage('');
+
+    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+      ws.current.send(JSON.stringify({ type: 'message', message, sessionId }));
+      setIsThinking(true);
+    } else {
+      console.error('WebSocket is not connected.');
+    }
   };
 
   return (
@@ -153,6 +192,11 @@ const Chatbot = () => {
                   <p>{chat.text}</p>
                 </div>
               ))}
+              {isThinking && (
+                <div className="chat-message bot-message">
+                  <p>{thinkingMessage}</p>
+                </div>
+              )}
             </div>
           )}
 
