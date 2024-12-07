@@ -1,13 +1,29 @@
-// /Users/matthew/Desktop/cs260/startupv3/service/index.js
 const express = require('express');
 const path = require('path');
+const { createServer } = require('http');
+const { Server } = require('socket.io');
 const { connectToCollection } = require('./utils/database');
 require('dotenv').config();
 const databaseRoutes = require('./routes/database');
-const authRoutes = require('./routes/auth'); // Add this line
+const authRoutes = require('./routes/auth');
+const OpenAI = require('openai');
 
-const app = express(); 
+// Configure OpenAI API
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
+
+// Create an HTTP server and initialize WebSocket
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: '*', // Adjust this for production to restrict allowed origins
+    methods: ['GET', 'POST'],
+  },
+});
 
 // Middleware for JSON parsing
 app.use(express.json());
@@ -19,23 +35,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/database', databaseRoutes);
 
 // Register auth routes
-app.use('/api/auth', authRoutes); // Add this line
+app.use('/api/auth', authRoutes);
 
 // API Router
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-// Import OpenAI API (v4 syntax)
-const OpenAI = require('openai');
-
-// Configure OpenAI API
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 // In-memory storage for sessions and logs
 const sessions = {};
 const logs = [];
+
+// WebSocket event handling
+io.on('connection', (socket) => {
+  console.log('A client connected:', socket.id);
+
+  // Listen for typing indicator requests
+  socket.on('player_typing', (sessionId) => {
+    if (sessions[sessionId]) {
+      io.emit('player_thinking', { sessionId, message: 'Your player is thinking...' });
+    }
+  });
+
+  // Handle disconnection
+  socket.on('disconnect', () => {
+    console.log('Client disconnected:', socket.id);
+  });
+});
 
 // GET Route for /api/chatbot to display session logs
 apiRouter.get('/chatbot', (req, res) => {
@@ -144,6 +169,6 @@ app.get('*', (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+httpServer.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

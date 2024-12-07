@@ -72,7 +72,6 @@ I will use the required technologies in the following ways:
   - **Own Service**: The backend APIs will manage game scenarios, user progress, and real-time chatbot interactions.
   - **Third-Party Services**:
     - **ChatGPT/Claude**: API calls will be made to ChatGPT or Claude to simulate player interactions during the chatbot sessions.
-    - **D&D 5e API**: The [D&D 5e API](https://www.dnd5eapi.co/) will be used to fetch data like spells, monsters, and other in-game details to enhance the gameplay experience.
 - **Authentication**: The app will use a custom authentication system built with Express and MongoDB. Users will log in using an email and password. JWT tokens will manage session authentication and be stored securely in cookies.
 - **Database**: MongoDB will store user data, including quiz scores, lesson progress, and chatbot performance. Predefined quiz questions will also be stored in MongoDB and pulled randomly for each quiz.
 - **WebSockets**: WebSockets will manage real-time interactions between the DM and simulated players during the chatbot sessions.
