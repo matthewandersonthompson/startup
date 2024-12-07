@@ -9,7 +9,10 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Chatbot Route
+// In-memory session store for WebSocket-enabled chatbot sessions
+const sessions = {};
+
+// Chatbot Route for standard API-based communication
 router.post('/', async (req, res) => {
   try {
     const { message } = req.body;
@@ -20,7 +23,7 @@ router.post('/', async (req, res) => {
 
     // Use the cheaper model (gpt-3.5-turbo)
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4o', // Specify the cheaper model
+      model: 'gpt-3.5-turbo', // Specify the cheaper model
       messages: [{ role: 'user', content: message }],
       max_tokens: 50, // Limit tokens to control costs
     });
@@ -46,6 +49,26 @@ router.post('/', async (req, res) => {
     // Handle other errors
     res.status(500).json({ error: 'Internal server error' });
   }
+});
+
+// Chatbot route for WebSocket-enabled sessions
+router.post('/websocket/start', (req, res) => {
+  const { sessionId } = req.body;
+
+  if (!sessionId) {
+    return res.status(400).json({ error: 'Session ID is required' });
+  }
+
+  // Initialize a WebSocket-enabled conversation
+  sessions[sessionId] = [
+    {
+      role: 'system',
+      content:
+        'You are a new and interested Dungeons & Dragons player character. You are now starting an encounter with your Dungeon Master. Respond to Dungeon Masters messages as a player character.',
+    },
+  ];
+
+  res.json({ message: `WebSocket session ${sessionId} initialized.` });
 });
 
 module.exports = router;
