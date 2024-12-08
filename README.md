@@ -14,10 +14,6 @@ Here are some initial sketches for the **DM Training Grounds** interface:
 ![ChatBot Interface](src/assets/images/ChatBot.png)
 *Interface where DMs interact with AI-powered players.*
 
-### Quiz/Learning Module
-![Quiz and Learning Module](src/assets/images/Quiz:Learning.png)
-*Interactive lessons and quizzes for new Dungeon Masters.*
-
 ### Login Page
 ![Login Page](src/assets/images/Login.png)
 *Simple login page where DMs create an account or log in.*

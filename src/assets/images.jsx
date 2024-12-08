@@ -19,7 +19,6 @@ import lesson9 from './images/lesson9.png';
 import lesson10 from './images/lesson10.png';
 import Login from './images/Login.png';
 import progressIcon from './images/progress_icon.png';
-import quizLearning from './images/Quiz:Learning.png';
 import test from './images/test.png';
 
 export {
@@ -43,6 +42,5 @@ export {
   lesson10,
   Login,
   progressIcon,
-  quizLearning,
   test,
 };

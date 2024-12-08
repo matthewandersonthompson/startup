@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
 const { createServer } = require('http');
-const { Server } = require('socket.io');
-const { connectToCollection } = require('./utils/database');
 require('dotenv').config();
+const { peerProxy } = require('./peerProxy');
+const { connectToCollection } = require('./utils/database');
 const databaseRoutes = require('./routes/database');
 const authRoutes = require('./routes/auth');
 const OpenAI = require('openai');
@@ -16,14 +16,11 @@ const openai = new OpenAI({
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-// Create an HTTP server and initialize WebSocket
+// Create an HTTP server
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: '*', // Adjust this for production to restrict allowed origins
-    methods: ['GET', 'POST'],
-  },
-});
+
+// Initialize the peerProxy, which sets up WebSocket handling
+const { broadcastMessage } = peerProxy(httpServer);
 
 // Middleware for JSON parsing
 app.use(express.json());
@@ -45,23 +42,6 @@ app.use('/api', apiRouter);
 const sessions = {};
 const logs = [];
 
-// WebSocket event handling
-io.on('connection', (socket) => {
-  console.log('A client connected:', socket.id);
-
-  // Listen for typing indicator requests
-  socket.on('player_typing', (sessionId) => {
-    if (sessions[sessionId]) {
-      io.emit('player_thinking', { sessionId, message: 'Your player is thinking...' });
-    }
-  });
-
-  // Handle disconnection
-  socket.on('disconnect', () => {
-    console.log('Client disconnected:', socket.id);
-  });
-});
-
 // GET Route for /api/chatbot to display session logs
 apiRouter.get('/chatbot', (req, res) => {
   res.json(logs);
@@ -73,7 +53,7 @@ apiRouter.post('/chatbot/start', async (req, res) => {
 
   const sessionId = Date.now().toString();
   let systemPrompt = `You are roleplaying as a Dungeons & Dragons player character...`;
-  
+
   if (scene) systemPrompt += ` The scene is a ${scene.replace('-', ' ')}.`;
   if (dmPrompt) systemPrompt += ` ${dmPrompt}`;
   systemPrompt += ` Introduce yourself by stating your name, race, class, and level...`;
@@ -134,6 +114,9 @@ apiRouter.post('/chatbot', async (req, res) => {
       log.latestMessage = message;
       log.latestReply = reply;
     }
+
+    // Broadcast the bot's reply to all connected WebSocket clients
+    broadcastMessage({ type: 'chat_reply', sessionId, message: reply });
 
     res.json({ reply });
   } catch (error) {
