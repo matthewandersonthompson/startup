@@ -1,3 +1,4 @@
+// /Users/matthew/Desktop/cs260/startupv3/src/pages/Chatbot.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/chatbot.css';
 import { dm } from '../assets/images';
@@ -33,14 +34,14 @@ const Chatbot = () => {
       ? 'wss://startup.dmtraininggrounds.com/ws'
       : 'ws://localhost:5173/ws';
 
-  // Auto-scroll to the bottom whenever chatHistory updates
+  // Auto-scroll to bottom
   useEffect(() => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
     }
   }, [chatHistory]);
 
-  // Cycle through thinking messages every 2 seconds while isThinking
+  // Cycle thinking messages
   useEffect(() => {
     let interval;
     if (isThinking) {
@@ -54,7 +55,7 @@ const Chatbot = () => {
     return () => clearInterval(interval);
   }, [isThinking]);
 
-  // Initialize WebSocket connection once the adventure has started
+  // Handle WebSocket after adventure started
   useEffect(() => {
     if (adventureStarted) {
       ws.current = new WebSocket(wsURL);
@@ -67,8 +68,6 @@ const Chatbot = () => {
         console.log('Message from server:', event.data);
         try {
           const data = JSON.parse(event.data);
-
-          // If we get a chat_reply from the server, stop thinking and show the message
           if (data.type === 'chat_reply') {
             setIsThinking(false);
             setChatHistory((prevChat) => [...prevChat, { sender: 'bot', text: data.message }]);
@@ -95,7 +94,6 @@ const Chatbot = () => {
     }
   }, [adventureStarted]);
 
-  // Handle starting the adventure by calling the API
   const handleStartAdventure = async () => {
     if (!scene && !dmPrompt.trim()) {
       alert('Please select a scene or enter a DM prompt to start the adventure.');
@@ -103,9 +101,13 @@ const Chatbot = () => {
     }
 
     try {
+      const userName = localStorage.getItem('userName') || '';
       const res = await fetch('/api/chatbot/start', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json', 
+          'X-User-Email': userName
+        },
         body: JSON.stringify({ scene, dmPrompt }),
       });
 
@@ -123,23 +125,23 @@ const Chatbot = () => {
     }
   };
 
-  // Handle sending user messages by calling the chatbot API
   const handleSendMessage = async () => {
     if (!message.trim()) return;
 
-    // Add user message to chat history
     setChatHistory((prevChat) => [...prevChat, { sender: 'user', text: message }]);
     const userMessage = message;
     setMessage('');
 
-    // Show "thinking" message while waiting for the reply
     setIsThinking(true);
 
-    // Call the chatbot API
     try {
+      const userName = localStorage.getItem('userName') || '';
       const res = await fetch('/api/chatbot', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-User-Email': userName
+        },
         body: JSON.stringify({ message: userMessage, sessionId }),
       });
 
@@ -147,11 +149,7 @@ const Chatbot = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-
-      // We do NOT directly show the bot reply here
-      // The reply will come via WebSocket 'chat_reply' event
-      // setIsThinking(false) will be handled when we receive 'chat_reply'
-
+      // Reply via WebSocket
     } catch (error) {
       console.error('Error sending message to chatbot:', error);
       alert('Error: ' + error.message);

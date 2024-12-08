@@ -9,7 +9,7 @@ const { connectToCollection } = require('./utils/database');
 const databaseRoutes = require('./routes/database');
 const authRoutes = require('./routes/auth');
 const OpenAI = require('openai');
-const authMiddleware = require('./middleware/auth'); // Updated auth middleware
+const authMiddleware = require('./middleware/auth');
 
 // Configure OpenAI API
 const openai = new OpenAI({
@@ -30,11 +30,12 @@ app.use(express.json());
 
 // CORS Configuration
 app.use(cors({
-  origin: 'http://localhost:5173', // your frontend origin
+  origin: 'http://localhost:5173',
 }));
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+// Instead of serving static from `service/public`, serve from the main `public` folder at the project root
+// Adjust this path if your `public` is one level up from service.
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Auth routes
 app.use('/api/auth', authRoutes);
@@ -55,16 +56,20 @@ apiRouter.get('/chatbot', (req, res) => {
   res.json(logs);
 });
 
-// Start Adventure Route
+// Start Adventure Route (POST /chatbot/start)
 apiRouter.post('/chatbot/start', async (req, res) => {
-  const { scene, dmPrompt } = req.body;
+  const userEmail = req.headers['x-user-email'];
+  if (!userEmail) {
+    return res.status(401).json({ msg: 'Not authorized' });
+  }
 
-  const sessionId = Date.now().toString();
+  const { scene, dmPrompt } = req.body;
   let systemPrompt = `You are roleplaying as a Dungeons & Dragons player character...`;
   if (scene) systemPrompt += ` The scene is a ${scene.replace('-', ' ')}.`;
   if (dmPrompt) systemPrompt += ` ${dmPrompt}`;
   systemPrompt += ` Introduce yourself by stating your name, race, class, and level...`;
 
+  const sessionId = Date.now().toString();
   const conversation = [{ role: 'system', content: systemPrompt }];
 
   try {
@@ -75,7 +80,6 @@ apiRouter.post('/chatbot/start', async (req, res) => {
 
     const reply = completion.choices[0].message.content.trim();
     conversation.push({ role: 'assistant', content: reply });
-
     sessions[sessionId] = conversation;
 
     logs.push({
@@ -86,6 +90,17 @@ apiRouter.post('/chatbot/start', async (req, res) => {
       timestamp: new Date().toISOString(),
     });
 
+    // Insert a chat session record
+    const sessionsCollection = await connectToCollection('chatSessions');
+    const chatSession = {
+      userEmail,
+      sessionId,
+      scene: scene || 'N/A',
+      startTime: new Date(),
+      lastUpdate: new Date()
+    };
+    await sessionsCollection.insertOne(chatSession);
+
     res.json({ reply, sessionId });
   } catch (error) {
     console.error('Error starting adventure:', error.message);
@@ -93,10 +108,14 @@ apiRouter.post('/chatbot/start', async (req, res) => {
   }
 });
 
-// Chatbot Route
+// Chatbot Route (POST /chatbot)
 apiRouter.post('/chatbot', async (req, res) => {
-  const { message, sessionId } = req.body;
+  const userEmail = req.headers['x-user-email'];
+  if (!userEmail) {
+    return res.status(401).json({ msg: 'Not authorized' });
+  }
 
+  const { message, sessionId } = req.body;
   if (!message || !sessionId || !sessions[sessionId]) {
     return res.status(400).json({ error: 'Invalid session or message.' });
   }
@@ -121,6 +140,13 @@ apiRouter.post('/chatbot', async (req, res) => {
 
     broadcastMessage({ type: 'chat_reply', sessionId, message: reply });
 
+    // Update lastUpdate in chatSessions
+    const sessionsCollection = await connectToCollection('chatSessions');
+    await sessionsCollection.updateOne(
+      { userEmail, sessionId },
+      { $set: { lastUpdate: new Date() } }
+    );
+
     res.json({ reply });
   } catch (error) {
     console.error('Error during chat:', error.message);
@@ -142,9 +168,9 @@ app.get('/example', async (req, res) => {
   }
 });
 
-// Fallback to React index.html
+// Adjust fallback route to point one level up since public is not in service but startupv3 root
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 httpServer.listen(port, () => {

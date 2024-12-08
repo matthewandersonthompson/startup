@@ -64,4 +64,21 @@ router.get('/myQuizResults', async (req, res) => {
   }
 });
 
+// Fetch chat sessions for logged-in user (protected)
+router.get('/myChatSessions', async (req, res) => {
+  const userEmail = req.userEmail;
+  if (!userEmail) {
+    return res.status(401).json({ msg: 'Not authorized.' });
+  }
+
+  try {
+    const sessionsCollection = await connectToCollection('chatSessions');
+    const sessions = await sessionsCollection.find({ userEmail }).toArray();
+    res.json(sessions);
+  } catch (err) {
+    console.error('Error fetching chat sessions:', err);
+    res.status(500).json({ msg: 'Error fetching chat sessions.' });
+  }
+});
+
 module.exports = router;

@@ -5,6 +5,7 @@ import '../styles/database.css';
 const Database = () => {
   const [users, setUsers] = useState([]);
   const [quizResults, setQuizResults] = useState([]);
+  const [chatSessions, setChatSessions] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
@@ -63,7 +64,46 @@ const Database = () => {
       setErrorMsg('Error fetching quiz results.');
       setQuizResults([]);
     });
+
+    // Fetch chat sessions
+    fetch('/api/database/myChatSessions', {
+      headers: {
+        'X-User-Email': userName
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to fetch chat sessions: ${res.statusText}`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      if (Array.isArray(data)) {
+        setChatSessions(data);
+      } else {
+        setChatSessions([]);
+      }
+    })
+    .catch(err => {
+      console.error('Error fetching chat sessions:', err);
+      setErrorMsg('Error fetching chat sessions.');
+      setChatSessions([]);
+    });
   }, []);
+
+  function formatDuration(startTime, endTime) {
+    const start = new Date(startTime);
+    const end = new Date(endTime);
+    const diffMs = end - start;
+    const diffMinutes = Math.floor(diffMs / 60000);
+    const diffSeconds = Math.floor((diffMs % 60000) / 1000);
+
+    if (diffMinutes > 0) {
+      return `${diffMinutes}m ${diffSeconds}s`;
+    } else {
+      return `${diffSeconds}s`;
+    }
+  }
 
   return (
     <div>
@@ -99,21 +139,29 @@ const Database = () => {
             </tbody>
           </table>
 
-          {/* Dungeon Master Chat Sessions now moved to the middle */}
           <h3>Dungeon Master Chat Sessions</h3>
           <table>
             <thead>
               <tr>
-                <th>Session</th>
-                <th>Date</th>
-                <th>Status</th>
+                <th>Session ID</th>
+                <th>Scene</th>
+                <th>Duration</th>
               </tr>
             </thead>
             <tbody>
-              {/* Still mock data for now */}
-              <tr><td>Session 1</td><td>10/15/2024</td><td>Completed</td></tr>
-              <tr><td>Session 2</td><td>10/16/2024</td><td>In Progress</td></tr>
-              <tr><td>Session 3</td><td>10/17/2024</td><td>Completed</td></tr>
+              {Array.isArray(chatSessions) && chatSessions.length > 0 ? (
+                chatSessions.map((session, index) => (
+                  <tr key={index}>
+                    <td>{session.sessionId}</td>
+                    <td>{session.scene}</td>
+                    <td>{formatDuration(session.startTime, session.lastUpdate)}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="3">No chat sessions found.</td>
+                </tr>
+              )}
             </tbody>
           </table>
 
