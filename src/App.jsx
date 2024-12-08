@@ -38,7 +38,6 @@ function App() {
               {/* Protected routes require login */}
               <li><Link to="/dashboard">Dashboard</Link></li>
               <li><Link to="/chatbot">Chatbot</Link></li>
-              <li><Link to="/quizzes">Quizzes</Link></li>
               <li><Link to="/database">Database</Link></li>
               {/* Auth link shows userName if logged in, else "Login" */}
               <li><Link to="/auth">{authStatus === 'authenticated' ? userName : "Login"}</Link></li>
