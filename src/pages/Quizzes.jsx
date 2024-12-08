@@ -8,10 +8,12 @@ const Quizzes = () => {
   const { id } = useParams();
   const quizId = parseInt(id, 10);
   const questionsData = quizzes[quizId] || [];
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [showWarningModal, setShowWarningModal] = useState(true); // show modal by default
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,13 +54,10 @@ const Quizzes = () => {
       const userName = localStorage.getItem('userName');
       console.log('Sending userName to saveQuizResult:', userName);
 
-      // Determine total questions based on quizId
       let totalQuestions;
       if (quizId === 11) {
-        // Final exam
         totalQuestions = 50;
       } else {
-        // Regular quizzes
         totalQuestions = 10;
       }
 
@@ -70,7 +69,7 @@ const Quizzes = () => {
           'Content-Type': 'application/json',
           'X-User-Email': userName || ''
         },
-        body: JSON.stringify({ quizId, score: percentage }) // sending percentage now
+        body: JSON.stringify({ quizId, score: percentage })
       })
       .then(res => {
         if (!res.ok) {
@@ -86,7 +85,6 @@ const Quizzes = () => {
     }
   }, [showResults, quizId, score]);
 
-  // Display the user's percentage on the UI after finishing
   let totalQuestionsForDisplay = 10;
   if (quizId === 11) {
     totalQuestionsForDisplay = 50;
@@ -94,25 +92,51 @@ const Quizzes = () => {
 
   const userPercentage = Math.round((score / totalQuestionsForDisplay) * 100);
 
+  // If no quiz data found, show the message in a modal-like container
   if (questionsData.length === 0) {
     return (
-      <main className="quiz-section">
-        <h2>Quiz not found</h2>
-        <button className="return-btn" onClick={() => navigate('/dashboard')}>Return to Dashboard</button>
-      </main>
+      <div className="success-modal">
+        <div className="success-content">
+          <h2>Notice</h2>
+          <p>
+            Hey! This page is only in the header to make it easier for the Professors and TAs to understand my site's functionality.
+            However, you should select your quiz on the Dashboard Page.
+          </p>
+          <button
+            onClick={() => navigate('/dashboard')}
+            className="modal-button"
+          >
+            Check out the Quizzes Now!
+          </button>
+        </div>
+      </div>
     );
   }
 
   return (
     <main className="quiz-section">
-      {showResults ? (
-        <div className="quiz-results">
-          <h3>Your Score</h3>
-          <p>You scored {userPercentage}% out of 100%!</p>
-          <button className="restart-btn" onClick={handleRestart}>Restart Quiz</button>
-          <button className="return-btn" onClick={() => navigate('/dashboard')}>Return to Dashboard</button>
+      {showWarningModal && (
+        <div className="success-modal">
+          <div className="success-content">
+            <h2>Notice</h2>
+            <p>
+              Hey! This page is only linked in the header to make it easier for Professors and TAs to view the site's functionality.
+              In a real scenario, you would navigate to quizzes through the Dashboard page.
+            </p>
+            <button
+              onClick={() => {
+                setShowWarningModal(false);
+                navigate('/dashboard');
+              }}
+              className="modal-button"
+            >
+              Check out the Quizzes Now!
+            </button>
+          </div>
         </div>
-      ) : (
+      )}
+
+      {!showResults && !showWarningModal && (
         <section id="quiz">
           <h2 className="quiz-title">Quiz {quizId}</h2>
           <div className="quiz-question active">
@@ -130,6 +154,15 @@ const Quizzes = () => {
             <button className="continue-btn" onClick={handleContinue}>Continue</button>
           </div>
         </section>
+      )}
+
+      {showResults && !showWarningModal && (
+        <div className="quiz-results">
+          <h3>Your Score</h3>
+          <p>You scored {userPercentage}% out of 100%!</p>
+          <button className="restart-btn" onClick={handleRestart}>Restart Quiz</button>
+          <button className="return-btn" onClick={() => navigate('/dashboard')}>Return to Dashboard</button>
+        </div>
       )}
     </main>
   );
