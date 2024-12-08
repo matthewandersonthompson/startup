@@ -1,12 +1,15 @@
+// /Users/matthew/Desktop/cs260/startupv3/service/index.js
 const express = require('express');
 const path = require('path');
 const { createServer } = require('http');
 require('dotenv').config();
+const cors = require('cors');
 const { peerProxy } = require('./peerProxy');
 const { connectToCollection } = require('./utils/database');
 const databaseRoutes = require('./routes/database');
 const authRoutes = require('./routes/auth');
 const OpenAI = require('openai');
+const authMiddleware = require('./middleware/auth'); // Updated auth middleware
 
 // Configure OpenAI API
 const openai = new OpenAI({
@@ -19,30 +22,35 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 // Create an HTTP server
 const httpServer = createServer(app);
 
-// Initialize the peerProxy, which sets up WebSocket handling
+// Initialize the peerProxy
 const { broadcastMessage } = peerProxy(httpServer);
 
-// Middleware for JSON parsing
+// Middleware
 app.use(express.json());
 
-// Serve static files from the 'public' directory
+// CORS Configuration
+app.use(cors({
+  origin: 'http://localhost:5173', // your frontend origin
+}));
+
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Register database routes
-app.use('/api/database', databaseRoutes);
-
-// Register auth routes
+// Auth routes
 app.use('/api/auth', authRoutes);
 
-// API Router
+// Database routes (protected)
+app.use('/api/database', authMiddleware, databaseRoutes);
+
+// Additional API Router
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-// In-memory storage for sessions and logs
+// In-memory sessions and logs
 const sessions = {};
 const logs = [];
 
-// GET Route for /api/chatbot to display session logs
+// GET /api/chatbot to display logs
 apiRouter.get('/chatbot', (req, res) => {
   res.json(logs);
 });
@@ -53,7 +61,6 @@ apiRouter.post('/chatbot/start', async (req, res) => {
 
   const sessionId = Date.now().toString();
   let systemPrompt = `You are roleplaying as a Dungeons & Dragons player character...`;
-
   if (scene) systemPrompt += ` The scene is a ${scene.replace('-', ' ')}.`;
   if (dmPrompt) systemPrompt += ` ${dmPrompt}`;
   systemPrompt += ` Introduce yourself by stating your name, race, class, and level...`;
@@ -81,10 +88,7 @@ apiRouter.post('/chatbot/start', async (req, res) => {
 
     res.json({ reply, sessionId });
   } catch (error) {
-    console.error(
-      'Error starting adventure:',
-      error.response ? error.response.data : error.message
-    );
+    console.error('Error starting adventure:', error.message);
     res.status(500).json({ error: 'Error starting the adventure. Please try again.' });
   }
 });
@@ -115,15 +119,11 @@ apiRouter.post('/chatbot', async (req, res) => {
       log.latestReply = reply;
     }
 
-    // Broadcast the bot's reply to all connected WebSocket clients
     broadcastMessage({ type: 'chat_reply', sessionId, message: reply });
 
     res.json({ reply });
   } catch (error) {
-    console.error(
-      'Error during chat:',
-      error.response ? error.response.data : error.message
-    );
+    console.error('Error during chat:', error.message);
     res.status(500).json({ error: 'Error communicating with the chatbot service.' });
   }
 });
@@ -132,26 +132,21 @@ apiRouter.post('/chatbot', async (req, res) => {
 app.get('/example', async (req, res) => {
   try {
     const collection = await connectToCollection('exampleCollection');
-
-    // Insert a test document
     const testDoc = { name: 'Refactored Data', value: 99 };
     const result = await collection.insertOne(testDoc);
 
-    // Query the collection
     const docs = await collection.find({}).toArray();
-
     res.json({ insertedId: result.insertedId, documents: docs });
   } catch (err) {
     res.status(500).send('Error: ' + err.message);
   }
 });
 
-// Fallback to React index.html for unknown routes
+// Fallback to React index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start the server
 httpServer.listen(port, () => {
   console.log(`HTTP Server running on port ${port}`);
   console.log(`WebSocket Server running on port ${port}`);
