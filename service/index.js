@@ -33,9 +33,8 @@ app.use(cors({
   origin: 'http://localhost:5173',
 }));
 
-// Instead of serving static from `service/public`, serve from the main `public` folder at the project root
-// Adjust this path if your `public` is one level up from service.
-app.use(express.static(path.join(__dirname, '..', 'public')));
+// Serve static files from `public` in `services/startup`
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Auth routes
 app.use('/api/auth', authRoutes);
@@ -168,9 +167,9 @@ app.get('/example', async (req, res) => {
   }
 });
 
-// Adjust fallback route to point one level up since public is not in service but startupv3 root
+// Move the fallback route to the bottom, after all other routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 httpServer.listen(port, () => {
