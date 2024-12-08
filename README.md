@@ -123,4 +123,6 @@ This deliverable secures the application by implementing user authentication and
 - Established a frontend WebSocket client connecting to the backend.
 - Enabled sending and receiving of real-time messages between the DM (frontend) and the AI players (backend).
 - Integrated WebSocket data into the application interface, displaying real-time player actions as they happen.
+- FOR SOMEONE GRADING: It is hard to notice, because the ai is very fast, but one easy indicator of the websockets at work is the loading messages that you can see in the chatbot page BEFORE the actual message appears
 - Configured vite.config.js to proxy WebSocket requests during development for easier debugging.
+- Confirmed full functionality in production at https://startup.dmtraininggrounds.com.

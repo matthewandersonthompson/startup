@@ -23,7 +23,7 @@ const Home = () => {
           <div className="page-list">
             <div className="page-item">
               <a href="https://github.com/matthewandersonthompson/startup">Check Out My GitHub!</a>
-              <p>Follow this link to my public GitHub repository! Clone my project, learn from my mistakes, or do anything you’d like!</p>
+              <p>My name is Matthew Thompson! Follow this link to my public GitHub repository! Clone my project, learn from my mistakes, or do anything you’d like!</p>
             </div>
             <div className="page-item">
               <Link to="/dashboard">Adventuring Dashboard</Link>
