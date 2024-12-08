@@ -1,7 +1,7 @@
 # DM Training Grounds
 
 ## Elevator Pitch
-Soon welcoming the newest [WorldSmith.io](https://www.worldsmith.io/) feature: The Dungeon Master Training Grounds! Already, we use AI to help DMs prepare their campaigns and sessions. However, what if you are a new DM? What if you want to learn how to run your own sessions with ease and wow your players? The WorldSmith Training Grounds is the perfect tool to help you get started and prepare for your first session. It features an AI-powered chatbot that simulates real player interactions, allowing you to practice handling different player dynamics in a controlled environment. Additionally, the learning module includes interactive lessons and quizzes on core game mechanics, helping new DMs build confidence, track their progress, and improve their skills before stepping into live gameplay.
+Soon welcoming the newest [WorldSmith.io](https://www.worldsmith.io/) feature: The Dungeon Master Training Grounds! Already, we use AI to help DMs prepare their campaigns and sessions. However, what if you are a new DM? What if you want to learn how to run your own sessions with ease and wow your players? The WorldSmith Training Grounds is the perfect tool to help you get started and prepare for your first session. It features an AI-powered chatbot that simulates real player interactions, allowing you to practice handling different player dynamics in a controlled environment. Additionally, the learning module includes interactive  quizzes on core game mechanics, helping new DMs build confidence, track their progress, and improve their skills before stepping into live gameplay.
 
 ## Design
 Here are some initial sketches for the **DM Training Grounds** interface:
@@ -48,14 +48,13 @@ sequenceDiagram
 *Mermaid diagram illustrating the flow of interaction between the Dungeon Master (DM) and the AI-powered chatbot, which simulates the actions of multiple players during a training session.*
 
 ## Key Features
-- **Learning Modules**: Structured lessons covering key D&D mechanics. Each module is interactive, guiding new DMs through different topics and challenges they may encounter in real sessions.
-- **Quizzes and Scoring**: After completing each module, users will take quizzes to assess their understanding. Scores are tracked and displayed next to completed modules in the user’s profile.
+- **Quizzes and Scoring**: New DMs should be constantly challenging and testing their knowledge! Our site features intertactive quizzes that test your metal as a dm and help you improve! Scores are tracked and displayed next to completed modules in the user’s profile.
 - **AI-Powered Chatbot**: Simulates realistic player interactions, allowing DMs to practice handling multiple players in a controlled environment.
-- **Player Configuration**: Customize player attributes like class and level to simulate different types of players.
-- **Scenario Selection**: Choose from pre-made scenarios or load custom ones to test your ability to adapt to various in-game situations.
+- **Situation Configuration**: Customize player attributes like class and level to simulate different types of players with scene selection and custom prompt inputs.
 - **Interactive Gameplay**: Users manage player actions, rolls, and the story in real-time. Practice your role as a DM in realistic gameplay scenarios.
-- **Real-Time Feedback**: DMs will receive instant feedback and scoring after each session, helping them improve their game management skills.
+- **Real-Time Feedback**: DMs will receive instant feedback and scoring after each session, helping them improve their game management skills in the form of scores.
 - **Progress Tracking**: Users can view their quiz results, completed lessons, and chatbot performance in their profile, making it easy to see their progress.
+- **Competition**: Users can view their quiz results and compare their success to those of their peers on the site! Can you top the leaderboards?
 
 ## Technologies
 I will use the required technologies in the following ways:
@@ -118,3 +117,10 @@ This deliverable secures the application by implementing user authentication and
 - Dynamically updated headers to display the logged-in username or "Login" when appropriate.
 - Restricted key pages to authenticated users, redirecting unauthorized visitors to a login prompt.
 - Confirmed full functionality in production at https://startup.dmtraininggrounds.com.
+
+## Startup WebSocket Deliverable
+- Implemented backend support for WebSocket connections.
+- Established a frontend WebSocket client connecting to the backend.
+- Enabled sending and receiving of real-time messages between the DM (frontend) and the AI players (backend).
+- Integrated WebSocket data into the application interface, displaying real-time player actions as they happen.
+- Configured vite.config.js to proxy WebSocket requests during development for easier debugging.
