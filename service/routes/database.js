@@ -7,13 +7,30 @@ const router = express.Router();
 // Fetch all users (protected)
 router.get('/users', async (req, res) => {
   try {
-    const collection = await connectToCollection('users');
-    const userCount = await collection.countDocuments();
+    const usersCollection = await connectToCollection('users');
+    const resultsCollection = await connectToCollection('quizResults');
+
+    const userCount = await usersCollection.countDocuments();
     if (userCount === 0) {
-      await collection.insertOne({ email: 'test@example.com', password: 'hashed_password' });
+      // Insert a test user if none exist (for testing)
+      await usersCollection.insertOne({ email: 'test@example.com', password: 'hashed_password' });
+      console.log('Inserted a test user because no users found previously.');
     }
 
-    const users = await collection.find({}).toArray();
+    const users = await usersCollection.find({}).toArray();
+    console.log('Users found:', users);
+
+    for (let user of users) {
+      const quizResults = await resultsCollection.find({ userEmail: user.email }).toArray();
+      if (quizResults.length > 0) {
+        const total = quizResults.reduce((sum, r) => sum + r.score, 0);
+        const avg = total / quizResults.length;
+        user.avgScore = Math.round(avg);
+      } else {
+        user.avgScore = 0;
+      }
+    }
+
     res.json(users);
   } catch (err) {
     console.error('Error fetching users:', err.message);
@@ -38,7 +55,6 @@ router.post('/saveQuizResult', async (req, res) => {
       score: parseInt(score, 10),
       dateTaken: new Date().toISOString()
     };
-
     await resultsCollection.insertOne(quizResult);
     res.json({ msg: 'Quiz result saved', quizResult });
   } catch (err) {
