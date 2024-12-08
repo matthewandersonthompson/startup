@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/auth.css';
 
 const Auth = ({ onAuthChange }) => {
-  const [isSignUp, setIsSignUp] = useState(true); // State to toggle between sign up and login
+  const [isSignUp, setIsSignUp] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -14,10 +14,8 @@ const Auth = ({ onAuthChange }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is already logged in
     const storedUser = localStorage.getItem('userName');
     if (storedUser) {
-      // Show a modal offering logout or going to dashboard
       setShowLoggedInModal(true);
     }
   }, []);
@@ -27,23 +25,23 @@ const Auth = ({ onAuthChange }) => {
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        // No credentials needed now
         body: JSON.stringify({ email, password }),
       });
 
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem('userName', data.userName);
+        onAuthChange(data.userName, 'authenticated');
 
-        // Determine success message based on action
+
         if (endpoint === '/api/auth/create') {
           setSuccessMessage(`Account created successfully! Welcome, ${data.userName}.`);
         } else {
           setSuccessMessage(`Welcome back, ${data.userName}!`);
         }
 
-        // Show success modal
         setShowModal(true);
-        // Clear any previous error
         setErrorMessage('');
         onAuthChange(data.userName, 'authenticated');
       } else {
@@ -59,7 +57,6 @@ const Auth = ({ onAuthChange }) => {
     localStorage.removeItem('userName');
     onAuthChange('', 'unauthenticated');
     setShowLoggedInModal(false);
-    // Clear fields and reset forms
     setEmail('');
     setPassword('');
     setIsSignUp(true);
@@ -69,12 +66,11 @@ const Auth = ({ onAuthChange }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <main style={{ flex: '1' }}>
-        {/* If user is already logged in, show logged-in modal instead of sign-up/login forms */}
         {showLoggedInModal && !showModal && (
           <div className="success-modal">
             <div className="success-content">
               <h2>You are already logged in!</h2>
-              <p>It seems you’re already logged in as <strong>{localStorage.getItem('userName')}</strong>.</p>
+              <p>You’re already logged in as <strong>{localStorage.getItem('userName')}</strong>.</p>
               <button
                 onClick={handleLogout}
                 className="modal-button"
@@ -84,7 +80,7 @@ const Auth = ({ onAuthChange }) => {
               </button>
               <button
                 onClick={() => {
-                  window.location.href = 'https://startup.dmtraininggrounds.com/dashboard';
+                  window.location.href = '/dashboard';
                 }}
                 className="modal-button"
               >
@@ -94,7 +90,6 @@ const Auth = ({ onAuthChange }) => {
           </div>
         )}
 
-        {/* If not showing logged-in modal or success modal, show sign-up/login */}
         {!showLoggedInModal && !showModal && (
           <>
             {isSignUp ? (
@@ -210,7 +205,6 @@ const Auth = ({ onAuthChange }) => {
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </main>
 
-      {/* Success Modal for sign-up/login */}
       {showModal && (
         <div className="success-modal">
           <div className="success-content">
@@ -218,7 +212,7 @@ const Auth = ({ onAuthChange }) => {
             <p>{successMessage}</p>
             <button
               onClick={() => {
-                window.location.href = 'https://startup.dmtraininggrounds.com/dashboard';
+                window.location.href = '/dashboard';
               }}
               className="modal-button"
             >

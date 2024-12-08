@@ -1,3 +1,4 @@
+// /Users/matthew/Desktop/cs260/startupv3/src/pages/Quizzes.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/quizzes.css';
@@ -14,7 +15,6 @@ const Quizzes = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Reset state if quizId changes
     setCurrentQuestion(0);
     setScore(0);
     setShowResults(false);
@@ -47,6 +47,53 @@ const Quizzes = () => {
     setSelectedAnswer(null);
   };
 
+  useEffect(() => {
+    if (showResults) {
+      const userName = localStorage.getItem('userName');
+      console.log('Sending userName to saveQuizResult:', userName);
+
+      // Determine total questions based on quizId
+      let totalQuestions;
+      if (quizId === 11) {
+        // Final exam
+        totalQuestions = 50;
+      } else {
+        // Regular quizzes
+        totalQuestions = 10;
+      }
+
+      const percentage = Math.round((score / totalQuestions) * 100);
+
+      fetch('/api/database/saveQuizResult', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-User-Email': userName || ''
+        },
+        body: JSON.stringify({ quizId, score: percentage }) // sending percentage now
+      })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Failed to save quiz result: ${res.statusText}`);
+        }
+        return res.json();
+      })
+      .then(data => console.log('Quiz result saved:', data))
+      .catch(err => {
+        console.error('Error saving quiz result:', err);
+        alert('There was an error saving your quiz result. Please try again.');
+      });
+    }
+  }, [showResults, quizId, score]);
+
+  // Display the user's percentage on the UI after finishing
+  let totalQuestionsForDisplay = 10;
+  if (quizId === 11) {
+    totalQuestionsForDisplay = 50;
+  }
+
+  const userPercentage = Math.round((score / totalQuestionsForDisplay) * 100);
+
   if (questionsData.length === 0) {
     return (
       <main className="quiz-section">
@@ -61,7 +108,7 @@ const Quizzes = () => {
       {showResults ? (
         <div className="quiz-results">
           <h3>Your Score</h3>
-          <p>You scored {score} out of {questionsData.length}!</p>
+          <p>You scored {userPercentage}% out of 100%!</p>
           <button className="restart-btn" onClick={handleRestart}>Restart Quiz</button>
           <button className="return-btn" onClick={() => navigate('/dashboard')}>Return to Dashboard</button>
         </div>
@@ -69,20 +116,18 @@ const Quizzes = () => {
         <section id="quiz">
           <h2 className="quiz-title">Quiz {quizId}</h2>
           <div className="quiz-question active">
-            <p>{currentQuestion + 1}. {questionsData[currentQuestion].question}</p>
-            {questionsData[currentQuestion].answers.map((answer, index) => (
+            <p>{currentQuestion + 1}. {questionsData[currentQuestion]?.question}</p>
+            {questionsData[currentQuestion]?.answers.map((answer, index) => (
               <label key={index} className="custom-radio">
                 <input
                   type="radio"
                   name={`question${currentQuestion}`}
-                  onClick={() => handleAnswerSelect(answer.value === questionsData[currentQuestion].correctAnswer)}
+                  onClick={() => handleAnswerSelect(answer.value === questionsData[currentQuestion]?.correctAnswer)}
                 />
                 <span>{answer.text}</span>
               </label>
             ))}
-            <button className="continue-btn" onClick={handleContinue}>
-              Continue
-            </button>
+            <button className="continue-btn" onClick={handleContinue}>Continue</button>
           </div>
         </section>
       )}
