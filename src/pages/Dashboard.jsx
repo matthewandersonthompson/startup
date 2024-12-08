@@ -1,4 +1,3 @@
-// src/pages/Dashboard.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/app-data.css';
@@ -26,67 +25,67 @@ const Dashboard = () => {
 
           <div className="lesson">
             <img src={lesson1} alt="Lesson 1 Icon" />
-            <Link to="/quizzes">1. Introduction to Being a Dungeon Master</Link>
+            <Link to="/quizzes/1">1. Introduction to Being a Dungeon Master</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson2} alt="Lesson 2 Icon" />
-            <Link to="/quizzes">2. Building a World: Story and Setting</Link>
+            <Link to="/quizzes/2">2. Building a World: Story and Setting</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson3} alt="Lesson 3 Icon" />
-            <Link to="/quizzes">3. Designing Adventures</Link>
+            <Link to="/quizzes/3">3. Designing Adventures</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson4} alt="Lesson 4 Icon" />
-            <Link to="/quizzes">4. Managing NPCs and Villains</Link>
+            <Link to="/quizzes/4">4. Managing NPCs and Villains</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson5} alt="Lesson 5 Icon" />
-            <Link to="/quizzes">5. Rules and Mechanics: Understanding D&D Core</Link>
+            <Link to="/quizzes/5">5. Rules and Mechanics: Understanding D&D Core</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson6} alt="Lesson 6 Icon" />
-            <Link to="/quizzes">6. Combat Strategies and Encounters</Link>
+            <Link to="/quizzes/6">6. Combat Strategies and Encounters</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson7} alt="Lesson 7 Icon" />
-            <Link to="/quizzes">7. Role-Playing: Encouraging Player Engagement</Link>
+            <Link to="/quizzes/7">7. Role-Playing: Encouraging Player Engagement</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson8} alt="Lesson 8 Icon" />
-            <Link to="/quizzes">8. Handling Unexpected Player Actions</Link>
+            <Link to="/quizzes/8">8. Handling Unexpected Player Actions</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson9} alt="Lesson 9 Icon" />
-            <Link to="/quizzes">9. Running Epic Boss Fights</Link>
+            <Link to="/quizzes/9">9. Running Epic Boss Fights</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="lesson">
             <img src={lesson10} alt="Lesson 10 Icon" />
-            <Link to="/quizzes">10. Campaign Management and Pacing</Link>
+            <Link to="/quizzes/10">10. Campaign Management and Pacing</Link>
           </div>
           <div className="line-between"></div>
 
           <div className="quiz-modal final-exam">
             <img src={test} alt="Final Exam Icon" />
-            <Link to="/quizzes">Final Learning Exam: Professional Dungeon Master</Link>
+            <Link to="/quizzes/11">Final Learning Exam: Professional Dungeon Master</Link>
           </div>
         </section>
 

@@ -1,4 +1,3 @@
-// src/pages/Database.jsx
 import React, { useEffect, useState } from 'react';
 import '../styles/database.css';
 
@@ -15,13 +14,8 @@ const Database = () => {
 
   return (
     <div>
-      <div className="disclaimer-modal">
-        <p>This Page Would NOT Be User Facing. Only Displayed for Assignment Purposes.</p>
-      </div>
-
       <main>
         <section className="data-section">
-          {/* Existing Game Session Logs Table */}
           <h3>Game Session Logs</h3>
           <table>
             <thead>
@@ -45,7 +39,6 @@ const Database = () => {
             </tbody>
           </table>
 
-          {/* Existing Quiz Results Table */}
           <h3>Quiz Results</h3>
           <table>
             <thead>
@@ -70,7 +63,6 @@ const Database = () => {
             </tbody>
           </table>
 
-          {/* New User Login Info Table */}
           <h3>User Login Information</h3>
           <table>
             <thead>

@@ -76,6 +76,8 @@ function App() {
               </RequireAuth>
             } 
           />
+
+          {/* Quizzes routes */}
           <Route 
             path="/quizzes" 
             element={
@@ -83,6 +85,14 @@ function App() {
                 <Quizzes />
               </RequireAuth>
             } 
+          />
+          <Route 
+            path="/quizzes/:id" 
+            element={
+              <RequireAuth>
+                <Quizzes />
+              </RequireAuth>
+            }
           />
         </Routes>
 
