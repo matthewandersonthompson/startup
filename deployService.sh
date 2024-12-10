@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 while getopts k:h:s: flag
 do
     case "${flag}" in
@@ -29,7 +27,7 @@ cp -rf dist build/public
 
 # Copy entire service directory except node_modules
 cp -r service/* build/
-rm -rf build/node_modules # remove node_modules if present
+rm -rf build/node_modules 
 
 # Step 2: Clear out old distribution on target
 printf "\n----> Clearing out previous distribution on the target\n"

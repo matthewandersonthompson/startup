@@ -1,4 +1,3 @@
-// /Users/matthew/Desktop/cs260/startupv3/src/pages/Chatbot.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/chatbot.css';
 import { dm } from '../assets/images';
@@ -34,14 +33,12 @@ const Chatbot = () => {
       ? 'wss://startup.dmtraininggrounds.com/ws'
       : 'ws://localhost:5173/ws';
 
-  // Auto-scroll to bottom
   useEffect(() => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
     }
   }, [chatHistory]);
 
-  // Cycle thinking messages
   useEffect(() => {
     let interval;
     if (isThinking) {
@@ -55,7 +52,6 @@ const Chatbot = () => {
     return () => clearInterval(interval);
   }, [isThinking]);
 
-  // Handle WebSocket after adventure started
   useEffect(() => {
     if (adventureStarted) {
       ws.current = new WebSocket(wsURL);
@@ -149,7 +145,6 @@ const Chatbot = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      // Reply via WebSocket
     } catch (error) {
       console.error('Error sending message to chatbot:', error);
       alert('Error: ' + error.message);

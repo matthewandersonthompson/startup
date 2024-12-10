@@ -1,4 +1,3 @@
-// /Users/matthew/Desktop/cs260/startupv3/src/pages/Dashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/app-data.css';
@@ -31,7 +30,6 @@ const Dashboard = () => {
       return;
     }
 
-    // Fetch quiz results
     const quizResultsPromise = fetch('/api/database/myQuizResults', {
       headers: { 'X-User-Email': userName },
     })
@@ -55,7 +53,6 @@ const Dashboard = () => {
         setCompletedQuizzes(0);
       });
 
-    // Fetch chat sessions
     const chatSessionsPromise = fetch('/api/database/myChatSessions', {
       headers: { 'X-User-Email': userName },
     })
@@ -78,7 +75,6 @@ const Dashboard = () => {
         setChatSessionsCount(0);
       });
 
-    // Fetch users to get avgScore
     const usersPromise = fetch('/api/database/users', {
       headers: { 'X-User-Email': userName },
     })
@@ -113,7 +109,6 @@ const Dashboard = () => {
 
   const completionPercentage = Math.round((completedQuizzes / totalQuizzes) * 100);
 
-  // Circular progress setup
   const radius = 40;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (completionPercentage / 100) * circumference;

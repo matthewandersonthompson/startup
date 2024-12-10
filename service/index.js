@@ -1,4 +1,3 @@
-// /Users/matthew/Desktop/cs260/startupv3/service/index.js
 const express = require('express');
 const path = require('path');
 const { createServer } = require('http');
@@ -11,7 +10,6 @@ const authRoutes = require('./routes/auth');
 const OpenAI = require('openai');
 const authMiddleware = require('./middleware/auth');
 
-// Configure OpenAI API
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -19,43 +17,32 @@ const openai = new OpenAI({
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-// Create an HTTP server
 const httpServer = createServer(app);
 
-// Initialize the peerProxy
 const { broadcastMessage } = peerProxy(httpServer);
 
-// Middleware
 app.use(express.json());
 
-// CORS Configuration
 app.use(cors({
   origin: 'http://localhost:5173',
 }));
 
-// Serve static files from `public` in `services/startup`
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Auth routes
 app.use('/api/auth', authRoutes);
 
-// Database routes (protected)
 app.use('/api/database', authMiddleware, databaseRoutes);
 
-// Additional API Router
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-// In-memory sessions and logs
 const sessions = {};
 const logs = [];
 
-// GET /api/chatbot to display logs
 apiRouter.get('/chatbot', (req, res) => {
   res.json(logs);
 });
 
-// Start Adventure Route (POST /chatbot/start)
 apiRouter.post('/chatbot/start', async (req, res) => {
   const userEmail = req.headers['x-user-email'];
   if (!userEmail) {
@@ -89,7 +76,6 @@ apiRouter.post('/chatbot/start', async (req, res) => {
       timestamp: new Date().toISOString(),
     });
 
-    // Insert a chat session record
     const sessionsCollection = await connectToCollection('chatSessions');
     const chatSession = {
       userEmail,
@@ -107,7 +93,6 @@ apiRouter.post('/chatbot/start', async (req, res) => {
   }
 });
 
-// Chatbot Route (POST /chatbot)
 apiRouter.post('/chatbot', async (req, res) => {
   const userEmail = req.headers['x-user-email'];
   if (!userEmail) {
@@ -139,7 +124,6 @@ apiRouter.post('/chatbot', async (req, res) => {
 
     broadcastMessage({ type: 'chat_reply', sessionId, message: reply });
 
-    // Update lastUpdate in chatSessions
     const sessionsCollection = await connectToCollection('chatSessions');
     await sessionsCollection.updateOne(
       { userEmail, sessionId },
@@ -153,7 +137,6 @@ apiRouter.post('/chatbot', async (req, res) => {
   }
 });
 
-// Example MongoDB integration
 app.get('/example', async (req, res) => {
   try {
     const collection = await connectToCollection('exampleCollection');
@@ -167,7 +150,6 @@ app.get('/example', async (req, res) => {
   }
 });
 
-// Move the fallback route to the bottom, after all other routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });

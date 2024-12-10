@@ -1,10 +1,9 @@
-// /Users/matthew/Desktop/cs260/startupv3/service/routes/database.js
+
 const express = require('express');
 const { connectToCollection } = require('../utils/database');
 
 const router = express.Router();
 
-// Fetch all users (protected)
 router.get('/users', async (req, res) => {
   try {
     const usersCollection = await connectToCollection('users');
@@ -12,7 +11,6 @@ router.get('/users', async (req, res) => {
 
     const userCount = await usersCollection.countDocuments();
     if (userCount === 0) {
-      // Insert a test user if none exist (for testing)
       await usersCollection.insertOne({ email: 'test@example.com', password: 'hashed_password' });
       console.log('Inserted a test user because no users found previously.');
     }
@@ -38,7 +36,6 @@ router.get('/users', async (req, res) => {
   }
 });
 
-// Save quiz result (protected)
 router.post('/saveQuizResult', async (req, res) => {
   const { quizId, score } = req.body;
   const userEmail = req.userEmail;
@@ -63,7 +60,6 @@ router.post('/saveQuizResult', async (req, res) => {
   }
 });
 
-// Fetch quiz results for logged-in user (protected)
 router.get('/myQuizResults', async (req, res) => {
   const userEmail = req.userEmail;
   if (!userEmail) {
@@ -80,7 +76,6 @@ router.get('/myQuizResults', async (req, res) => {
   }
 });
 
-// Fetch chat sessions for logged-in user (protected)
 router.get('/myChatSessions', async (req, res) => {
   const userEmail = req.userEmail;
   if (!userEmail) {

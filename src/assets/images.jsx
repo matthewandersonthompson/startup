@@ -1,4 +1,3 @@
-// src/assets/images.js
 import ChatBot from './images/ChatBot.png';
 import chatgptScreenshot from './images/chatgpt_screenshot.png';
 import DMTrainingGroundsHomepage from './images/DM_Training_Grounds_Homepage.png';

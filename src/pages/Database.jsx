@@ -1,4 +1,3 @@
-// /Users/matthew/Desktop/cs260/startupv3/src/pages/Database.jsx
 import React, { useEffect, useState } from 'react';
 import '../styles/database.css';
 

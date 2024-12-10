@@ -1,11 +1,9 @@
-// /service/routes/auth.js
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { connectToCollection } = require('../utils/database');
 
 const router = express.Router();
 
-// Create user endpoint
 router.post('/create', async (req, res) => {
   const { email, password } = req.body;
 
@@ -31,7 +29,6 @@ router.post('/create', async (req, res) => {
   }
 });
 
-// Login endpoint
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -52,7 +49,6 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ msg: 'Invalid email or password.' });
     }
 
-    // Just return userName, no cookie
     res.status(200).json({ userName: email });
   } catch (err) {
     console.error('Error logging in:', err.message);

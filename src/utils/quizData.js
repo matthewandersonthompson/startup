@@ -1,5 +1,3 @@
-// src/utils/quizData.js
-
 export const quizzes = {
     // QUIZ 1: Combat Mechanics (10 Questions)
     1: [

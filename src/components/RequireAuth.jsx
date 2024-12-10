@@ -1,4 +1,3 @@
-// /Users/matthew/Desktop/cs260/startupv3/src/components/RequireAuth.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +16,7 @@ const RequireAuth = ({ children }) => {
   }, []);
 
   const handleLoginRedirect = () => {
-    navigate('/auth'); // Redirect to login page
+    navigate('/auth'); 
   };
 
   if (showLoginModal && !isAuthenticated) {

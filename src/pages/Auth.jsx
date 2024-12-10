@@ -1,4 +1,3 @@
-// /Users/matthew/Desktop/cs260/startupv3/src/pages/Auth.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/auth.css';
@@ -25,7 +24,6 @@ const Auth = ({ onAuthChange }) => {
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // No credentials needed now
         body: JSON.stringify({ email, password }),
       });
 

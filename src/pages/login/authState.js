@@ -1,4 +1,3 @@
-// src/pages/login/AuthState.js
 export class AuthState {
   static Unknown = new AuthState('unknown');
   static Authenticated = new AuthState('authenticated');

@@ -1,4 +1,3 @@
-// /Users/matthew/Desktop/cs260/startupv3/src/pages/Quizzes.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/quizzes.css';
@@ -52,13 +51,10 @@ const Quizzes = () => {
       const userName = localStorage.getItem('userName');
       console.log('Sending userName to saveQuizResult:', userName);
 
-      // Determine total questions based on quizId
       let totalQuestions;
       if (quizId === 11) {
-        // Final exam
         totalQuestions = 50;
       } else {
-        // Regular quizzes
         totalQuestions = 10;
       }
 
@@ -70,7 +66,7 @@ const Quizzes = () => {
           'Content-Type': 'application/json',
           'X-User-Email': userName || ''
         },
-        body: JSON.stringify({ quizId, score: percentage }) // sending percentage now
+        body: JSON.stringify({ quizId, score: percentage }) 
       })
       .then(res => {
         if (!res.ok) {
@@ -86,7 +82,6 @@ const Quizzes = () => {
     }
   }, [showResults, quizId, score]);
 
-  // Display the user's percentage on the UI after finishing
   let totalQuestionsForDisplay = 10;
   if (quizId === 11) {
     totalQuestionsForDisplay = 50;
