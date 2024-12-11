@@ -117,6 +117,7 @@ This deliverable secures the application by implementing user authentication and
 - Dynamically updated headers to display the logged-in username or "Login" when appropriate.
 - Restricted key pages to authenticated users, redirecting unauthorized visitors to a login prompt.
 - Confirmed full functionality in production at https://startup.dmtraininggrounds.com.
+- FOR TA'S: I PUSHED THE WEBSOCKET DELIVERABLE OVER MY LOGIN DELIVERABLE!!!
 
 ## Startup WebSocket Deliverable
 - Implemented backend support for WebSocket connections.
